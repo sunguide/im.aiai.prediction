@@ -1,0 +1,8 @@
+[ 2014-09-01T00:52:13+08:00 ]  
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000667s ]
+NOTIC: [8] Undefined index: REQUEST_METHOD /home/wwwroot/prediction.aiai.im/ThinkPHP/Library/Think/App.class.php 第 28 行.
+NOTIC: [8] Undefined index: REQUEST_URI /home/wwwroot/prediction.aiai.im/ThinkPHP/Library/Think/Dispatcher.class.php 第 135 行.
+ERR: 无法加载模块:Admin
+
