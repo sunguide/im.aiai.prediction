@@ -1,0 +1,26 @@
+
+<extend name="Public/base" />
+
+<block name="title"><title>s</title></block>
+
+<block name="main">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="center">
+                <ul class="list-group">
+                    <volist name="data" id="vo">
+                        <li class="list-group-item-{$vo.id}">
+                            <span>[id:{$vo.id}]</span>
+                            <span>{$vo.position_title}</span>
+                            <p>{$vo.article_content}</p>
+                            <img src="{$vo.position_image}" />
+                            <a href="http://p.aiai.im/index.php?m=Spider&c=Index&a=markAjax&id={$vo.id}&status=2" class="ajax-get no-refresh" remove-class="list-group-item-{$vo.id}">Position</a>
+                            <a href="http://p.aiai.im/index.php?m=Spider&c=Index&a=markAjax&id={$vo.id}&status=3" class="ajax-get no-refresh" remove-class="list-group-item-{$vo.id}">Position3</a>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</block>

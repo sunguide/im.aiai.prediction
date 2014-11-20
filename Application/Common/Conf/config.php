@@ -6,6 +6,7 @@
  * Time: 下午6:02
  */
     //定义回调URL通用的URL
+    require_cache("../Commom/functions.php");
     define('URL_CALLBACK', 'http://www.aiai.im/index.php?m=Account&a=callback&type=');
 
     return array(
@@ -25,9 +26,31 @@
             'about'         => 'Public/about',
             'search'        => 'Articles/search',
 
-
         ),
-        'URL_MODEL'=> 1,
+        'LOG_RECORD' => true,
+        //子域名部署
+
+        'APP_SUB_DOMAIN_DEPLOY'   =>    1, // 开启子域名或者IP配置
+        'APP_SUB_DOMAIN_RULES'    =>    array(
+            /* 域名部署配置
+            *格式1: '子域名或泛域名或IP'=> '模块名[/控制器名]';
+            *格式2: '子域名或泛域名或IP'=> array('模块名[/控制器名]','var1=a&var2=b&var3=*');
+            */
+            'm.aiai.im'  => 'Mobile',  //m.aiai.im 指向Mobile模块
+        ),
+        'URL_MODEL' => 1,
+
+
+        ////////////////数据缓存/////////////////
+        'DATA_CACHE_TIME'       =>  0,             //长连接时间,REDIS_PERSISTENT为1时有效
+        'DATA_CACHE_PREFIX'     =>  '',            //缓存前缀
+        'DATA_CACHE_TYPE'       =>  'Redis',       //数据缓存类型
+        'DATA_EXPIRE'           =>  0,	           //数据缓存有效期(单位:秒) 0表示永久缓存
+        'DATA_PERSISTENT'       =>  1,		       //是否长连接
+        'DATA_REDIS_HOST'	    =>  'localhost',   //分布式Redis,默认第一个为主服务器
+        'DATA_REDIS_PORT'		=>  '6379',	       //端口,如果相同只填一个,用英文逗号分隔
+        'DATA_REDIS_AUTH'       =>  '',            //redis123456Redis auth认证(密钥中不能有逗号),如果相同只填一个,用英文逗号分隔
+        ////////////////数据缓存end/////////////
         //腾讯QQ登录配置
         'THINK_SDK_QQ' => array(
             'APP_KEY'    => '100522698', //应用注册成功后分配的 APP ID
