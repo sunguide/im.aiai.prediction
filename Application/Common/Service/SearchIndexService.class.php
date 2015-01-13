@@ -1,10 +1,10 @@
 <?php
 namespace Common\Service;
-use Common\Common\Description;
+use Common\Description;
 use Common\Manager\URLManager;
 class SearchIndexService extends Service{
     public $SearchService = null;
-
+    public $optType = "add";
     public function genArticleIndex(){
         $Articles = M("Articles");
         $offset = 0;
@@ -33,7 +33,11 @@ class SearchIndexService extends Service{
                 );
                 $docs[] = $doc;
             }
-            $resultJson = json_decode($this->_getSearchService()->addDocs($docs, "main"), true);
+            if($this->optType == "update"){
+                $resultJson = json_decode($this->_getSearchService()->addDocs($docs, "main"), true);
+            }else{
+                $resultJson = json_decode($this->_getSearchService()->updateDocs($docs, "main"), true);
+            }
             if($resultJson['stauts'] = "OK"){
                 echo "success\n";
             }
@@ -75,7 +79,11 @@ class SearchIndexService extends Service{
                 );
                 $docs[] = $doc;
             }
-            $resultJson = json_decode($this->_getSearchService()->addDocs($docs, "main"), true);
+            if($this->optType == "update"){
+                $resultJson = json_decode($this->_getSearchService()->updateDocs($docs, "main"), true);
+            }else{
+                $resultJson = json_decode($this->_getSearchService()->addDocs($docs, "main"), true);
+            }
             if($resultJson['stauts'] = "OK"){
                 echo "success\n";
             }
@@ -110,7 +118,11 @@ class SearchIndexService extends Service{
                 );
                 $docs[] = $doc;
             }
-            $resultJson = json_decode($this->_getSearchService()->addDocs($docs, "main"), true);
+            if($this->optType == "update"){
+                $resultJson = json_decode($this->_getSearchService()->updateDocs($docs, "main"), true);
+            }else{
+                $resultJson = json_decode($this->_getSearchService()->addDocs($docs, "main"), true);
+            }
             if($resultJson['stauts'] = "OK"){
                 echo "success\n";
             }
@@ -151,7 +163,11 @@ class SearchIndexService extends Service{
                 );
                 $docs[] = $doc;
             }
-            $resultJson = json_decode($this->_getSearchService()->addDocs($docs, "main"), true);
+            if($this->optType == "update"){
+                $resultJson = json_decode($this->_getSearchService()->updateDocs($docs, "main"), true);
+            }else{
+                $resultJson = json_decode($this->_getSearchService()->addDocs($docs, "main"), true);
+            }
             if($resultJson['stauts'] = "OK"){
                 echo "success\n";
             }
@@ -191,7 +207,11 @@ class SearchIndexService extends Service{
                 $docs[] = $doc;
                 echo $article['keyword']."\n";
             }
-            $resultJson = json_decode($this->_getSearchService()->addDocs($docs, "main"), true);
+            if($this->optType == "update"){
+                $resultJson = json_decode($this->_getSearchService()->updateDocs($docs, "main"), true);
+            }else{
+                $resultJson = json_decode($this->_getSearchService()->addDocs($docs, "main"), true);
+            }
             if($resultJson['stauts'] = "OK"){
                 echo "success\n";
             }
@@ -236,7 +256,11 @@ class SearchIndexService extends Service{
                 );
                 $docs[] = $doc;
             }
-            $resultJson = json_decode($this->_getSearchService()->addDocs($docs, "main"), true);
+            if($this->optType == "update"){
+                $resultJson = json_decode($this->_getSearchService()->updateDocs($docs, "main"), true);
+            }else{
+                $resultJson = json_decode($this->_getSearchService()->addDocs($docs, "main"), true);
+            }
             if($resultJson['stauts'] = "OK"){
                 echo "success\n";
             }
@@ -244,6 +268,10 @@ class SearchIndexService extends Service{
         }
     }
 
+    public function setOptType($type){
+        $this->optType = $type;
+        return $this;
+    }
     private function _getSearchService(){
 
         if($this->SearchService){

@@ -11,6 +11,9 @@ class ArticleController extends Controller {
         $article =  $Articles->find($id);
         $Img = M("Img");
         $img = $Img->order("rand()")->find();
+        if(isset($img['qiniu_img_url']) && $img['qiniu_img_url']){
+            $img['img_url'] = $img['qiniu_img_url'];
+        }
         $this->assign("article", $article);
         $this->assign("img",$img);
         $this->display();

@@ -1,0 +1,48 @@
+<ion-view title="Playlists">
+    <ion-header-bar>
+        <h1 class="title">首页</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeLogin()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <ion-slide-box on-slide-changed="slideHasChanged($index)">
+            <ion-slide>
+                <div class="box blue">
+                    <img src="http://www.bootcss.com/p/unslider/img/wood.jpg">
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div class="box yellow">
+                    <img src="http://www.bootcss.com/p/unslider/img/wood.jpg">
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div class="box pink">
+                    <img src="http://www.bootcss.com/p/unslider/img/wood.jpg">
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+        <div class="list">
+
+            <div class="item my-item"
+                 collection-repeat="image in images"
+                 collection-item-width="'100%'"
+                 collection-item-height="'30%'">
+                <div class="row">
+                    <div class="col col-33" style="background-image: url({{image.url}});
+                    -moz-background-size:100% 100%;
+                    background-size:100% 100%;">
+                    </div>
+                    <div class="col">
+                        <img ng-src="http://www.bootcss.com/p/unslider/img/wood.jpg" style="width: 100%;"><br>
+                        <img ng-src="http://www.bootcss.com/p/unslider/img/wood.jpg" style="width: 100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

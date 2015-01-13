@@ -85,6 +85,28 @@ class Redis extends Cache {
         }
         return $result;
     }
+    /**
+     * 数据入队列
+     * @param string $key KEY名称
+     * @param string|array $value 获取得到的数据
+     * @param bool $right 是否从右边开始入
+     */
+    public function push($key, $value ,$right = true) {
+        $key = $this->options['prefix'].$key;
+        $value = json_encode($value);
+        return $right ? $this->handler->rPush($key, $value) : $this->handler->lPush($key, $value);
+    }
+
+    /**
+     * 数据出队列
+     * @param string $key KEY名称
+     * @param bool $left 是否从左边开始出数据
+     */
+    public function pop($key , $left = true) {
+        $key = $this->options['prefix'].$key;
+        $val = $left ? $this->handler->lPop($key) : $this->handler->rPop($key);
+        return json_decode($val);
+    }
 
     /**
      * 删除缓存

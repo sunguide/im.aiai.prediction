@@ -13,16 +13,20 @@
 
 // 检测PHP环境
 if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
+ini_set("display_errors","On");error_reporting(E_ERROR);
+function err_handler($e){
+    var_dump($e);
+}
+set_exception_handler("err_handler");
 
 // 开启调试模式 建议开发阶段开启 部署阶段注释或者设为false
 define('APP_DEBUG',True);
-
 // 定义应用目录
 define('APP_PATH','./Application/');
 // 引入composer
-require ("./vendor/autoload.php");
-
+require __DIR__. "/vendor/autoload.php";
 // 引入ThinkPHP入口文件
-require './ThinkPHP/ThinkPHP.php';
+require __DIR__ . '/ThinkPHP/ThinkPHP.php';
+
 
 // 亲^_^ 后面不需要任何代码了 就是如此简单

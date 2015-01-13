@@ -8,8 +8,9 @@
     //定义回调URL通用的URL
     require_cache("../Commom/functions.php");
     define('URL_CALLBACK', 'http://www.aiai.im/index.php?m=Account&a=callback&type=');
-
+    define("APP_VERSION", "1.0.0");
     return array(
+        'APP_ENCRYPTION_KEY'    => "5yaoaiai",//自定义应用加密KEY
         'LANG_SWITCH_ON' => true,
         'DEFAULT_LANG' => 'zh-cn', // 默认语言
         'LANG_AUTO_DETECT' => true, // 自动侦测语言
@@ -36,10 +37,14 @@
             *格式1: '子域名或泛域名或IP'=> '模块名[/控制器名]';
             *格式2: '子域名或泛域名或IP'=> array('模块名[/控制器名]','var1=a&var2=b&var3=*');
             */
-            'm.aiai.im'  => 'Mobile',  //m.aiai.im 指向Mobile模块
+            'm.aiai.im'     => 'Mobile',  //m.aiai.im 指向Mobile模块
+            'api.aiai.im'   => 'Api',
+            'app.aiai.im'   => 'App',
+            'admin.aiai.im' => 'Admin'
         ),
-        'URL_MODEL' => 1,
-
+        'URL_MODEL'     => 1,
+        'TMPL_EXCEPTION_FILE' => APP_PATH.'/Common/Tpl/Public/exception.tpl',
+        'X_POWERED_BY'  => 'Aiai Inc.',
 
         ////////////////数据缓存/////////////////
         'DATA_CACHE_TIME'       =>  0,             //长连接时间,REDIS_PERSISTENT为1时有效

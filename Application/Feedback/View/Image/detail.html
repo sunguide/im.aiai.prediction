@@ -1,0 +1,17 @@
+<extend name="Public/base" />
+<block name="title"><title>{$title}</title></block>
+<block name="main">
+    <div class="container-fluid">
+        <div class="row">
+            <foreach name="imgs" item="vo" key="k" >
+
+                <div class="" style="margin-bottom: 5px;">
+                        <img src="{$vo.img_url}?imageView2/2/w/400/q/100" style="width: 100%;" class="img-responsive">
+                </div>
+
+            </foreach>
+
+        </div>
+    </div>
+
+</block>

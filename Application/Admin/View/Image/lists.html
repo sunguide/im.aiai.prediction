@@ -1,0 +1,179 @@
+<extend name="Public/base" />
+<block name="title"><title>{$title}</title></block>
+<block name="main">
+<!-- your app content -->
+<div class="content-app fixed-header">
+<!-- app header -->
+<div class="app-header">
+    <div class="pull-right">
+        <div class="gallery-actions">
+            <a class="btn btn-sm btn-default" role="button">Share</a>
+            <a class="btn btn-sm btn-default" role="button">Copy</a>
+            <a class="btn btn-sm btn-default" role="button">Delete</a>
+            <div class="btn-group">
+                <button class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" title="more">
+                    <i class="icon ion-more"></i>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Download</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="pull-left">
+        <a data-toggle="gallery-clear" class="btn btn-sm btn-default hide" role="button">Clear selection</a>
+    </div>
+    <!-- <h3 class="app-title">Drop App Modules</h3> -->
+</div><!-- /app header -->
+
+<!-- app body -->
+<div class="app-body">
+    <!-- app content here -->
+    <div class="gallery">
+        <foreach name="images" item="vo" key="k" >
+            <div class="gallery-item">
+                <div class="gallery-item-marker">
+                    <i class="icon ion-ios7-checkmark-empty"></i>
+                </div><!-- /gallery-item-marker -->
+                <a href="#" class="gallery-thumb">
+                    <img src="{$vo.img_url}?imageView2/2/w/200/q/80" alt="">
+                </a><!-- /gallery-thumb -->
+                <div class="gallery-item-caption">
+                    <i class="gi-caption-close icon ion-ios7-close-empty"></i>
+                    <i class="gi-toggle-details icon ion-ios7-more"></i>
+                    <div class="gi-caption-actions-top">
+                        <div class="btn-group btn-group-sm">
+                            <a href="#" class="btn btn-default">Share</a>
+                            <a href="#" class="btn btn-default">Slideshow</a>
+                            <a href="#" class="btn btn-default">Download</a>
+                            <a href="#" class="btn btn-default" title="Rotate left"><i class="icon ion-ios7-undo-outline"></i></a>
+                            <a href="#" class="btn btn-default" title="Rotate right"><i class="icon ion-ios7-redo-outline"></i></a>
+                            <a href="#" class="btn btn-default"><i class="icon ion-ios7-trash-outline"></i></a>
+                        </div>
+                    </div><!-- /caption action top -->
+                    <div class="gi-caption-actions-bottom">
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-default" title="Prev"><i class="icon ion-arrow-left-c"></i></a>
+                            <a href="#" class="btn btn-default"><i class="icon ion-grid"></i></a>
+                            <a href="#" class="btn btn-default" title="Next"><i class="icon ion-arrow-right-c"></i></a>
+                        </div>
+                    </div><!-- /caption action bottom -->
+
+                    <div class="gi-caption-img">
+                        <img src="{$vo.img_url}?imageView2/2/w/200/q/80" alt="">
+                    </div><!-- original image -->
+
+                    <!-- detail image -->
+                    <div class="panel panel-default">
+                        <div class="panel-body-heading full-line">
+                            <div class="pb-object pb-object-circle">
+                                <img src="assets/app/img/avatar4.png" alt=""/>
+                            </div>
+                            <h3 class="pb-title">
+                                Bent
+                                <small>Dec 12, 2013</small>
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            Caption text, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, ipsam, quisquam modi in ratione vitae velit laborum ullam architecto omnis aperiam illo. Debitis, in itaque repudiandae autem veniam adipisci vero.
+                        </div>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <div class="pull-right">location/path</div>
+                                Folder
+                            </li>
+                            <li class="list-group-item">
+                                <div class="pull-right">300 x 200</div>
+                                Dimantions
+                            </li>
+                            <li class="list-group-item">
+                                <div class="pull-right">image-name.jpg</div>
+                                File name
+                            </li>
+                            <li class="list-group-item">
+                                <div class="pull-right">16 Kb</div>
+                                File size
+                            </li>
+                            <li class="list-group-item">
+                                <div class="pull-right">Dec 20, 2013</div>
+                                Update
+                            </li>
+                            <li class="list-group-item">
+                                <small class="text-muted">http://site.com/path/image-name.jpg</small>
+                            </li>
+                        </ul>
+                    </div><!-- /panel detail image -->
+                </div><!-- /gallery-caption -->
+            </div><!-- /gallery-item -->
+        </foreach>
+    </div><!-- /gallery -->
+</div>
+</div>
+<script>
+    $(function(){
+        'use strict';
+
+        // show/hide caption
+        $('.gallery-thumb').on('click', function(e){
+            e.preventDefault();
+            var $this = $(this),
+                    gallery_item = $this.parent();
+
+            if(!gallery_item.hasClass('expand')){
+                $('.gallery-item').removeClass('expand')
+                        .find('.gallery-item-caption').hide();
+
+                gallery_item.find('.gallery-item-caption')
+                        .slideDown(300)
+                        .parent().addClass('expand');
+            }
+        });
+
+        // close caption action
+        $('.gi-caption-close').on('click', function(e){
+            e.preventDefault();
+            var $this = $(this),
+                    gallery_item = $this.parent().parent(),
+                    caption = $this.parent();
+
+            caption.slideUp(300, function(){
+                gallery_item.removeClass('expand');
+            });
+        });
+        $('.gi-toggle-details').on('click', function(e){
+            e.preventDefault();
+            var $this = $(this),
+                    caption = $this.parent();
+
+            caption.toggleClass('open');
+        });
+
+        // marked a gallerty item
+        $('.gallery-item-marker').on('click', function(e){
+            e.preventDefault();
+
+            var $this = $(this),
+                    gallery_item = $this.parent();
+
+            gallery_item.toggleClass('marked');
+
+            var show_toggle_clear = $('.gallery-item.marked').length;
+            if (show_toggle_clear <= 0) {
+                $('[data-toggle="gallery-clear"]').addClass('hide');
+            }
+            else{
+                $('[data-toggle="gallery-clear"]').removeClass('hide');
+            }
+        });
+
+        // control action button
+        $('[data-toggle="gallery-clear"]').on('click', function(e){
+            e.preventDefault();
+
+            $('.gallery-item').removeClass('marked');
+            $(this).addClass('hide');
+        });
+    })
+
+</script>
+</block>

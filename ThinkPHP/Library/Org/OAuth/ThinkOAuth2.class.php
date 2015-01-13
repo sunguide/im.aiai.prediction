@@ -10,6 +10,7 @@
 // OAUTH2_CODES_TABLE 服务器表名称
 // OAUTH2_CLIENTS_TABLE 客户端表名称
 // OAUTH2_TOKEN_TABLE 验证码表名称
+namespace Org\OAuth;
 
 import("ORG.OAuth.OAuth2");
 

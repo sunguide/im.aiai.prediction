@@ -1,0 +1,54 @@
+<extend name="Public/base" />
+<block name="title"><title>{$title}</title></block>
+<block name="main">
+    <include file="header_nav" />
+    <div id="slideshow" class="swiper-container">
+        <div class="items swiper-wrapper">
+            <foreach name="navs" item="vo" key="k" >
+                <div class="swiper-slide">
+                    <a href="{$vo.url}" target="_blank">
+                        <img src="{$vo.img_url}" style="width:100%;">
+                    </a>
+                </div>
+            </foreach>
+        </div>
+        <div id="slidePage" class="pagination"></div>
+    </div>
+    <div class="container-fluid">
+        <div class="row ">
+            <foreach name="images" item="vo" key="k" >
+
+                <div class="img-box" style="margin-bottom: 5px;position: relative;">
+                    <a href="{$vo.img_url}">
+                        <img src="{$vo.img_url}?imageView2/2/w/400/q/100" style="width: 100%;" class="img-responsive">
+                    </a>
+                    <div class="img-title" style="">{$vo.img_title}</div>
+                </div>
+
+            </foreach>
+        </div>
+    </div>
+<script>
+    $(function(){
+        showSlide();
+        autoStyle();
+    });
+    function showSlide(){
+        var mySwiper = $('.swiper-container').swiper({
+            //Your options here:
+            pagination: '#slidePage',
+            mode:'horizontal',
+            loop: true,
+            grabCursor: true,
+            autoplay: 3000,
+            paginationClickable: true,
+            keyboardControl:true
+        });
+    }
+    function autoStyle(){
+        var windowWidth = $(window).width();
+        $(".hot_word li").css("width",(windowWidth - 12)/3);
+    }
+
+</script>
+</block>

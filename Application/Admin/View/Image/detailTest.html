@@ -1,0 +1,90 @@
+<extend name="Public/base" />
+<block name="title"><title>{$title}</title></block>
+<block name="main">
+    <div class="container-fluid">
+        <div id="slideshow" class="slideshow swiper-container">
+            <ul class="items swiper-wrapper">
+                <li class="swiper-slide">
+                    <a href="#" target="_blank">
+                        <img src="http://m.yooli.com/resrc/img/banner/runningcoupons.jpg" >
+                    </a>
+                </li>
+            </ul>
+            <div class="number" id="slidePage"></div>
+        </div>
+        <div id="carousel-images" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <foreach name="imgs" item="vo" key="k" >
+                    <li data-target="#carousel-images" data-slide-to="{$k}" class="{$k?'':'active'}"></li>
+                </foreach>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <foreach name="imgs" item="vo" key="k" >
+
+                    <div class="item {$k?'':'active'}">
+                        <img src="{$vo.img_url}?2imageView2/1/w/400/h/200/q/50" alt="{$vo.img_title}">
+                        <div class="carousel-caption">
+                            {$vo.img_title}
+                        </div>
+                    </div>
+
+                </foreach>
+            </div>
+        </div>
+        <!--<div class="banner">-->
+            <!--<ul>-->
+                <!--<foreach name="imgs" item="vo" key="k" >-->
+                   <!--<li><img src="{$vo.img_url}?2imageView2/1/w/400/h/200/q/50"></li>-->
+                <!--</foreach>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <div class="row">
+            <foreach name="imgs" item="vo" key="k" >
+
+                <div class="" style="margin-bottom: 5px;">
+                    <img src="{$vo.img_url}?imageView2/2/w/400/q/100" style="width: 100%;" class="img-responsive">
+                </div>
+
+            </foreach>
+
+        </div>
+    </div>
+<script>
+    $(function(){
+        showSlide();
+    });
+    function showSlide(){
+        var swiper = $('.swiper-container');
+        var maxH = 260, maxW = 600, minH = 130;
+        var swImg = swiper.find('img');
+        if(Util.isMobile.any()){
+            var win = $(window).width();
+            if(win >= 320 && win < 640){
+                var resetH = (maxH/maxW)*(win-20);
+                swiper.css({'height': resetH})
+                swImg.css({'max-height': resetH});
+            } else if(win >= 640){
+                swiper.css({'height': maxH})
+                swImg.css({'max-height': maxH});
+            } else{
+                swiper.css({'height': minH})
+                swImg.css({'max-height': minH});
+            };
+        } else {
+            swiper.css({'height': maxH})
+            swImg.css({'max-height': maxH});
+        };
+        var newSwiper = new Swiper('.swiper-container', {
+            pagination: '#slidePage',
+            loop: true,
+            grabCursor: true,
+            autoplay: 3000,
+            paginationClickable: true
+        });
+        swiper.find('.swiper-wrapper').show();
+    }
+</script>
+</block>

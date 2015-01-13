@@ -20,9 +20,12 @@ define('APP_DEBUG',True);
 define('MODE_NAME','cli');
 // 定义应用目录
 define('APP_PATH','./Application/');
-// 引入composer
-require ("/home/wwwroot/prediction.aiai.im/vendor/autoload.php");
 
+ini_set("display_errors","On");error_reporting(E_ALL);
+// 引入composer
+require __DIR__. "/vendor/autoload.php";
+// 引入ThinkPHP入口文件
+require __DIR__ . '/ThinkPHP/ThinkPHP.php';
 ///////////////////////////////////////////////////////////////////////
 //
 //$depr = '/';
@@ -49,7 +52,5 @@ require ("/home/wwwroot/prediction.aiai.im/vendor/autoload.php");
 //}
 ///////////////////////////////////////////////////////////////////////
 
-// 引入ThinkPHP入口文件
-require '/home/wwwroot/prediction.aiai.im/ThinkPHP/ThinkPHP.php';
 
 // 亲^_^ 后面不需要任何代码了 就是如此简单

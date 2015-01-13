@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes" />
+    <block name="title"><title>爱爱管理后台</title></block>
+
+    <!-- fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="__PUBLIC__/admin/assets/app/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="__PUBLIC__/admin/assets/app/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="__PUBLIC__/admin/assets/app/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="__PUBLIC__/admin/assets/app/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="__PUBLIC__/admin/assets/app/ico/favico.png">
+    <link rel="shortcut icon" href="__PUBLIC__/admin/assets/app/ico/favico.ico">
+
+    <!-- theme fonts -->
+    <link href='http://fonts.useso.com/css?family=Roboto:400,100,100italic,300italic,300,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- theme bootstrap stylesheets -->
+    <link href="__PUBLIC__/admin/assets/bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+    <!-- theme dependencies stylesheets -->
+    <link href="__PUBLIC__/admin/assets/app/css/dependencies.css" rel="stylesheet" />
+
+    <!-- theme app main.css (this import of all custom css, you can use requirejs for optimizeCss or grunt to optimize them all) -->
+    <link href="__PUBLIC__/admin/assets/app/css/syrena-admin.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <script src="__PUBLIC__/admin/assets/jquery/jquery.min.js"></script>
+    <block name="header_load"></block>
+</head>
+<body>
+<!-- content wrapper to define fullpage or container -->
+<!-- (recomended: dont change the id value) -->
+<section id="wrapper" class="container">
+        <block name="left_nav">
+            <include file="Public/left_nav" />
+        </block>
+        <!-- define your awesome apps here -->
+        <!-- define content theme, use data-swipe="true" to enable gesture event -->
+        <!-- (recomended: dont change the id value) -->
+        <section id="content" class="content">
+            <include file="Public/header_nav" />
+            <!-- define content row -->
+            <div class="content-spliter">
+                <section id="content-main" class="content-main">
+                    <block name="main"><!-- your app content -->
+                        <div class="content-app fixed-header">
+                            <!-- app header -->
+                            <div class="app-header">
+                                <div class="pull-right">
+                                    <button class="btn btn-flat btn-default" id="dashboard-range">
+                                        <span class="icon ion-ios7-calendar-outline"></span>
+                                        <span class="text-date">Oct 30, 2013 - Nov 29, 2013</span>
+                                        <b class="caret"></b>
+                                    </button>
+                                </div>
+                                <h3 class="app-title pull-left hidden-xs">Weekly Resume <small>Oct 30 - Nov 29, 2013</small></h3>
+                            </div><!-- /app header -->
+
+                            <!-- app body -->
+                            <div class="app-body">
+                            </div>
+                        </div>
+                    </block>
+                </section>
+            </div>
+        </section>
+        <block name="footer-nav">
+        </block>
+
+        <block name="footer">
+                    <!-- CNZZ统计代码开始 -->
+                    <!--{$config.site_statistic}-->
+                    <!-- CNZZ统计代码结束 -->
+        </block>
+
+    </div><!------body----->
+</section>
+<!-- jQuery, theme required for theme -->
+<script src="__PUBLIC__/admin/assets/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- theme dependencies -->
+<!--
+    Contents List
+    1. Raphaël
+    2. Isotope
+    3. verge
+    4. Moment
+    5. Prettify
+-->
+<script src="__PUBLIC__/admin/assets/app/js/dependencies.js"></script>
+
+<!-- other dependencies -->
+<script src="__PUBLIC__/admin/assets/jquery-icheck/jquery.icheck.min.js"></script>
+<script src="__PUBLIC__/admin/assets/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!--<script src="__PUBLIC__/admin/assets/morris/morris.min.js"></script>-->
+<script src="__PUBLIC__/admin/assets/jquery-tags-input/jquery.tagsinput.min.js"></script>
+<script src="__PUBLIC__/admin/assets/select2/select2.min.js"></script>
+<script src="__PUBLIC__/admin/assets/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+
+<!-- theme app main.js -->
+<script src="__PUBLIC__/admin/assets/app/js/main.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        // date range picker
+        $('#dashboard-range').daterangepicker(
+                {
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+                        'Last 7 Days': [moment().subtract('days', 6), moment()],
+                        'Last 30 Days': [moment().subtract('days', 29), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+                    },
+                    startDate: moment().subtract('days', 6),
+                    endDate: moment()
+                },
+                function(start, end) {
+                    $('#dashboard-range .text-date').text(start.format('MMM D, YYYY') + ' - ' + end.format('MMM D, YYYY'));
+                }
+        );
+
+
+
+
+        // handle chart responsive on toggle .content
+        $(window).on('resize', function(){
+
+        })
+        $('#toggle-aside').on('click', function(){
+            // update chart after transition finished
+            $("#content").bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
+//                update();
+                $(this).unbind();
+            });
+        })
+        $('#toggle-content').on('click', function(){
+//            update();
+        })
+        // end chart
+
+
+
+        // todo list
+        $('.icheck').iCheck({
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass: 'iradio_flat-green',
+            increaseArea: '20%' // optional
+        }).on('ifChanged', function(){
+            var $this = $(this),
+                    todo = $(this).parent().parent().parent();
+
+            todo.toggleClass('todo-marked');
+            todo.find('.label').toggleClass('label-success');
+        });
+
+        // manual style for .tagsinput
+        $('div.tagsinput input').on('focus', function(){
+            var tagsinput = $(this).parent().parent();
+            tagsinput.addClass('focus');
+        }).on('focusout', function(){
+            var tagsinput = $(this).parent().parent();
+            tagsinput.removeClass('focus');
+        });
+    })
+</script>
+</body>
+</html>

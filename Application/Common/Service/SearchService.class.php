@@ -38,7 +38,7 @@ class SearchService extends Service{
     }
     public function addDocs($docs, $tableName){
 
-        $docService = new CloudsearchDoc($this->APP_NAME, $this->client);
+        $cloudSearchDoc = new CloudsearchDoc($this->APP_NAME, $this->client);
         $docsData = array();
         foreach($docs as $doc){
             $docsData[] = array(
@@ -46,21 +46,35 @@ class SearchService extends Service{
                 "cmd"    => "ADD"
             );
         }
-        return $docService->add(json_encode($docsData), $tableName);
+        return $cloudSearchDoc->add(json_encode($docsData), $tableName);
 
     }
 
     public function updateDocs($docs, $tableName){
 
-        $doc = new CloudsearchDoc($this->APP_NAME, $this->client);
-        return $doc->update($docs, $tableName);
+        $cloudSearchDoc = new CloudsearchDoc($this->APP_NAME, $this->client);
+        $docsData = array();
+        foreach($docs as $doc){
+            $docsData[] = array(
+                "fields" => $doc,
+                "cmd"    => "UPDATE"
+            );
+        }
+        return $cloudSearchDoc->update(json_encode($docsData), $tableName);
 
     }
 
     public function removeDocs($docs, $tableName){
 
-        $doc = new CloudsearchDoc($this->APP_NAME, $this->client);
-        return $doc->add($docs, $tableName);
+        $cloudSearchDoc = new CloudsearchDoc($this->APP_NAME, $this->client);
+        $docsData = array();
+        foreach($docs as $doc){
+            $docsData[] = array(
+                "fields" => $doc,
+                "cmd"    => "REMOVE"
+            );
+        }
+        return $cloudSearchDoc->remove(json_encode($docsData), $tableName);
 
     }
 

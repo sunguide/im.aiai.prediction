@@ -13,7 +13,9 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "predictionio/predictionio": "~0.6.0"
+        "predictionio/predictionio": "~0.6.0",
+        "qiniu/qiniu": "*",
+        "shark/simple_html_dom":"*"
     },
     "minimum-stability": "dev"
 }

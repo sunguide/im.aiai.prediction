@@ -1,0 +1,21 @@
+<extend name="Public/base" />
+<block name="title"><title>{$title}</title></block>
+<block name="main">
+    <div class="container-fluid">
+        <div class="row">
+            <foreach name="imgs" item="vo" key="k" >
+
+                <div class="" style="margin-bottom: 5px;">
+                    <img src="{$vo.img_url}?imageView2/2/w/400/q/100" style="width: 100%;" class="img-responsive">
+                </div>
+
+            </foreach>
+
+        </div>
+    </div>
+    <div class="ad">
+        <a href="http://s.click.taobao.com/t?e=m%3D2%26s%3Dby2ImEeSbPscQipKwQzePDAVflQIoZepK7Vc7tFgwiFRAdhuF14FMXJxwwvm6ZHTMMgx22UI05Z%2F3ZxusC4u%2Fwafh3ExEzoFScBJHgrxJh3WH1W4%2Fk5dEv7PLn6HZvL%2F" target="_blank">
+            <img src="http://aiaifiles.qiniudn.com/ad_gangben.png" style="width: 100%;"/>
+        </a>
+    </div>
+</block>

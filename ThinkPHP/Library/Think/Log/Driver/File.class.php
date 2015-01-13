@@ -39,12 +39,12 @@ class File {
         if($this->config['log_path'] && !is_dir($this->config['log_path'])) {
 
             if(!mkdir($this->config['log_path'],0755,true)){
-                throw new \Exception("Create Dir:'{$this->config['log_path']}' Fail");
+                E("Create Dir:'{$this->config['log_path']}' Fail");
             }
         }
         if(!file_exists($destination)){
-            if(!self :: createFile($destination)){
-                throw new \Exception("Create File:'{$destination}' Fail");
+            if(!self :: createFile($destination, true)){
+                E("Create File:'{$destination}' Fail Please Check Permission");
             }
         }
         //检测日志文件大小，超过配置大小则备份日志文件重新生成
@@ -53,7 +53,7 @@ class File {
               rename($destination,dirname($destination).'/'.time().'-'.basename($destination));
         $result = error_log("[{$now}] ".$_SERVER['REMOTE_ADDR'].' '.$_SERVER['REQUEST_URI']."\r\n{$log}\r\n", 3,$destination);
 
-        if(!$result) throw new \Exception("Write File:'{$destination}' Fail");
+        if(!$result) E("Write File:'{$destination}' Fail");
 
     }
     /**
@@ -94,9 +94,7 @@ class File {
         }
         $aimDir = dirname($aimUrl);
         File :: createDir($aimDir);
-        touch($aimUrl);
-
-        return true;
+        return touch($aimUrl);
     }
 
     /**

@@ -6,7 +6,7 @@
  */
 
 namespace Common\Manager;
-use Common\Common\Description;
+use Common\Description;
 
 class URLManager {
 
@@ -21,6 +21,9 @@ class URLManager {
                     $url = "http://m.aiai.im/position/".$id;
                     break;
                 case Description\CategoryDescription::CATEGORY_QUESTION_ANSWER:
+                    break;
+                case Description\CategoryDescription::CATEGORY_IMAGE:
+                    $url = "http://m.aiai.im/img/".$id;
                     break;
                 default:
                     break;

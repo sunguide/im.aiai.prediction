@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="http://cdn.bootcss.com/angular.js/1.3.0-beta.13/angular.min.js"></script>
+    <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="chat.js"></script>
+    <link rel="stylesheet" href="../Public/chat.css" />
+</head>
+<body ng-controller="ChatListCtrl">
+
+<div class="chats-module">
+    <div class="cm-contact fixed" style="display: none;">
+        <div class="cm-contact-separate">Top contacts</div>
+        <a href="#" class="cm-contact-item">
+            <div class="cmci-avatar">
+                <img src="../../../../Public/assets/app/img/avatar8.png" alt="">
+            </div>
+            <p class="cmci-name">Iin Bent <small>Team Leader</small></p>
+        </a>
+        <a href="#" class="cm-contact-item">
+            <div class="cmci-avatar">
+                <img src="../../../../Public/assets/app/img/avatar1.png" alt="">
+            </div>
+            <p class="cmci-name">Mr. Doe <small>UI Designer</small></p>
+        </a>
+        <a href="#" class="cm-contact-item">
+            <div class="cmci-avatar">
+                <img src="../../../../Public/assets/app/img/avatar9.png" alt="">
+            </div>
+            <p class="cmci-name">Yu Darsih <small>Data Analyst</small></p>
+        </a>
+
+        <div class="cm-contact-separate">More contacts</div>
+        <a href="#" class="cm-contact-item">
+            <div class="cmci-avatar">
+                <img src="../../../../Public/assets/app/img/avatar2.png" alt="">
+            </div>
+            <p class="cmci-name">Mba Jessica <small>PHP Programmer</small></p>
+        </a>
+        <a href="#" class="cm-contact-item">
+            <div class="cmci-avatar">
+                <img src="../../../../Public/assets/app/img/avatar1.png" alt="">
+            </div>
+            <p class="cmci-name">Doel Jony <small>Rubi Programmer</small></p>
+        </a>
+        <a href="#" class="cm-contact-item">
+            <div class="cmci-avatar">
+                <img src="../../../../Public/assets/app/img/avatar11.png" alt="">
+            </div>
+            <p class="cmci-name">Yumiko <small>Java Programmer</small></p>
+        </a>
+        <a href="#" class="cm-contact-item">
+            <div class="cmci-avatar">
+                <img src="../../../../Public/assets/app/img/avatar4.png" alt="">
+            </div>
+            <p class="cmci-name">Mark Londrian <small>PHP Programmer</small></p>
+        </a>
+        <a href="#" class="cm-contact-item">
+            <div class="cmci-avatar">
+                <img src="../../../../Public/assets/app/img/avatar5.png" alt="">
+            </div>
+            <p class="cmci-name">Mahatma <small>PHP Programmer</small></p>
+        </a>
+        <a href="#" class="cm-contact-item">
+            <div class="cmci-avatar">
+                <img src="../../../../Public/assets/app/img/avatar6.png" alt="">
+            </div>
+            <p class="cmci-name">Harab <small>Junior Designer</small></p>
+        </a>
+        <a href="#" class="cm-contact-item">
+            <div class="cmci-avatar">
+                <img src="../../../../Public/assets/app/img/avatar7.png" alt="">
+            </div>
+            <p class="cmci-name">Sungep <small>Acountant</small></p>
+        </a>
+        <a href="#" class="cm-contact-item">
+            <div class="cmci-avatar">
+                <img src="../../../../Public/assets/app/img/avatar10.png" alt="">
+            </div>
+            <p class="cmci-name">Pathoel <small>Acountant</small></p>
+        </a>
+        <a href="#" class="cm-contact-item">
+            <div class="cmci-avatar">
+                <img src="../../../../Public/assets/app/img/avatar6.png" alt="">
+            </div>
+            <p class="cmci-name">Opytama <small>Data Analyst</small></p>
+        </a>
+    </div><!-- /chat module contact -->
+
+    <div class="cm-content open" style="width: 600px;margin: auto;border-radius:6px;">
+        <div class="cm-content-heading">
+            <h3>小爱聊天机器人Hello {{chat_msg || 'World'}}!</h3>
+        </div><!-- /cm-content-heading -->
+        <div class="cm-content-chats">
+            <div class="chat-in" style="height: 81px;">
+                <div class="chat-avatar">
+                    <img src="../../../../Public/assets/app/img/avatar5.png" title="">
+                </div>
+                <div class="chat-msg">
+                    <p>优秀的人吗？</p>
+                    <time datetime="2013-12-13T20:00">Mr. Doe - 12 min</time>
+                </div>
+            </div><!-- /chat-in -->
+            <div class="{{chat.type}}" id="chat-id-{{$index}}" ng-repeat="chat in chats" >
+                <div class="chat-avatar">
+                    <img src="../../../../Public/assets/app/img/avatar5.png" title="">
+                </div>
+                <div class="chat-msg">
+                    <p>{{chat.msg}}？</p>
+                    <time datetime="2013-12-13T20:00">Mr. Doe - 12 min</time>
+                </div>
+            </div>
+            <div class="chat-out" style="height: 68px;">
+                <div class="chat-avatar">
+                    <img src="../../../../Public/assets/app/img/avatar4.png" title="">
+                </div>
+                <div class="chat-msg">
+                    <p>lorem nibh nam suspendisse lacinia</p>
+                    <time datetime="2013-12-13T20:00">8 min</time>
+                </div>
+            </div><!-- /chat-out -->
+
+            <div class="chat-in" style="height: 98px;">
+                <div class="chat-avatar">
+                    <img src="../../../../Public/assets/app/img/avatar5.png" title="">
+                </div>
+                <div class="chat-msg">
+                    <p>massa cursus auctor urna parturient</p>
+                    <p>
+                        <small><a href="#"><i class="icon ion-paperclip"></i> paperclips.zip</a></small>
+                    </p>
+                    <time datetime="2013-12-13T20:00">Mr. Doe - 5 min</time>
+                </div>
+            </div><!-- /chat-in -->
+
+            <div class="chat-out" style="height: 68px;">
+                <div class="chat-avatar">
+                    <img src="../../../../Public/assets/app/img/avatar4.png" title="">
+                </div>
+                <div class="chat-msg">
+                    <p>Great!</p>
+                    <time datetime="2013-12-13T20:00">4 min</time>
+                </div>
+            </div><!-- /chat-out -->
+            <div class="datetime"><i></i>昨天 23:11<i></i></div>
+            <div class="chat-in" style="height: 138px;">
+                <div class="chat-avatar">
+                    <img src="../../../../Public/assets/app/img/avatar5.png" title="">
+                </div>
+                <div class="chat-msg">
+                    <p>Pulvinar aute massa amet dapibus, etiam consectetuer consectetuer sagittis, egestas massa nibh vestibulum, sapien in sodales, quisque nec habitasse phasellus ultricies tempus</p>
+                    <time datetime="2013-12-13T20:00">Mr. Doe - 2 min</time>
+                </div>
+            </div><!-- /chat-in -->
+        </div>
+        <div class="cm-content-status">
+            <i class="icon ion-chatbubble-working"></i> Mr. Doe is typing...
+        </div><!-- /cm-content-status -->
+
+        <div class="cm-content-input">
+            <form id="frm-send-chat" role="form">
+                <input type="text" name="chat-msg" class="form-control" placeholder="Write a message">
+                <a type="submit" class="" title="Send">
+                    发送
+                </a>
+            </form>
+        </div><!-- /cm-content-input -->
+    </div><!-- /chat module content -->
+</div>
+<script>
+    function getHeight(){
+        new_chat_out.find('.chat-msg').innerHeight();
+    }
+    $(function(){
+        $('.cm-content-chats > div[class*="chat-"]').each(function(){
+            var height = $(this).find('.chat-msg').innerHeight();
+            $(this).css({'height': height + 'px'});
+        });
+        $('#frm-send-chat').on('submit', function(e){
+            e.preventDefault();
+
+            var $this = $(this),
+                    content_chats = $('.cm-content-chats'),
+                    msg = $('[name="chat-msg"]').val(),
+                    new_chat = '<div class="chat-out">'
+                            +    '<div class="chat-avatar">'
+                            +        '<img src="assets/app/img/avatar4.png" title="" />'
+                            +    '</div>'
+                            +    '<div class="chat-msg">'
+                            +        '<p>'+ msg +'</p>'
+                            +        '<time datetime="2013-12-13T20:00">Now</time>'
+                            +    '</div>'
+                            +'</div>';
+
+            if ($.trim(msg) != '') {
+
+                content_chats.append(new_chat);
+
+                // set height for new_chat
+                var new_chat_out = $('.cm-content-chats > div[class*="chat-"]').last(),
+                        new_chat_height = new_chat_out.find('.chat-msg').innerHeight();
+
+                new_chat_out.css({
+                    'height': new_chat_height + 'px'
+                });
+
+                var scrollBottom = content_chats.scrollTop() + content_chats.height();
+                content_chats.animate({ scrollTop: scrollBottom }, 300);
+
+                // back to first rule
+                $('[name="chat-msg"]').val('');
+            }
+            else{
+                // back to first rule
+                $('[name="chat-msg"]').val('');
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,7 +1,9 @@
 <?php
 namespace Wechat\Controller;
 use Com\Wechat\WechatAuth;
-use Common\Common\Description;
+use Common\Description;
+use Common\Manager\URLManager;
+use Common\Service\TulingRobotService;
 use Think\Controller;
 use Com\Wechat\Wechat;
 use Common\Service\SearchService;
@@ -49,7 +51,7 @@ class IndexController extends Controller {
                     case Wechat::MSG_TYPE_TEXT:
 
                         $searchService = new SearchService();
-                        $keyword = $data['Content'];
+                        $keyword = trim($data['Content']);
                         if(strpos($keyword, "答案") !== false){
                             $this->autoLearning($data, $keyword);
                             $responseContent = Description\ResponseDescription::mean(Description\ResponseDescription::AUTO_LEARNING_SUCCESS);
@@ -58,7 +60,6 @@ class IndexController extends Controller {
                         }
                         $responseContent = $this->_qa($keyword);
                         if($responseContent){
-                            $wechat->response($responseContent, Wechat::MSG_TYPE_TEXT);
                             break;
                         }
                         $result = json_decode($searchService->search($keyword), true);
@@ -77,7 +78,9 @@ class IndexController extends Controller {
                                 }
 
                             }else{
-                                $responseContent = Description\ResponseDescription::mean(Description\ResponseDescription::UNKNOWN_ANSWER);
+                                $tulingRobotService = new \Common\Service\TulingRobotService();
+                                $responseContent = $tulingRobotService->getResponse($keyword);
+                                if(!$responseContent) $responseContent = Description\ResponseDescription::mean(Description\ResponseDescription::UNKNOWN_ANSWER);
                                 $result = $wechat->replyText($responseContent);
                             }
                         }else{
@@ -96,7 +99,7 @@ class IndexController extends Controller {
                 /* 响应当前请求(自动回复) */
 //            $result = $wechat->response($content, $type);
 
-                Log::write('response result：'.json_encode($result), Log::DEBUG);
+//                Log::write('response result：'.json_encode($result), Log::DEBUG);
                 /**
                  * 响应当前请求还有以下方法可以只使用
                  * 具体参数格式说明请参考文档
@@ -161,7 +164,12 @@ class IndexController extends Controller {
         $responseContent = "小哥，相见恨晚哦，快来调戏我把！";
         switch($data['Event']){
             case Wechat::MSG_EVENT_SUBSCRIBE:          //订阅
-                $responseContent = "小哥，相见恨晚哦，快来调戏我把！";
+                $responseContent = "小哥，相见恨晚哦，快来调戏我把！\n\n";
+                $responseContent .= "使用帮助：\n";
+                $responseContent .= "1.直接回复：姿势或者招式，即可随机显示御女大招。\n";
+                $responseContent .= "2.直接回复：有色图，即可随机显示性感美女私房图。\n";
+                $responseContent .= "3.直接回复聊天内容，即可和我聊天哦。\n";
+                $responseContent .= "4.直接回复:?或者帮助，即可查看使用小提示哦。\n";
                 $this->_handleEventSubscribe($data['FromUserName']);
                 break;
             case Wechat::MSG_EVENT_SCAN:               //二维码扫描
@@ -190,20 +198,74 @@ class IndexController extends Controller {
             ));
         }
     }
-
-    private function _qa($keyword){
-        if($keyword){
-            $QA = M("Qa");
-            $item = $QA->where("keyword like '{$keyword}'")->find();
-            if($item){
-                $QaContent = M("QaContent");
-                $item = $QaContent->find($item['content_id']);
-                if($item){
-                    return $item['content'];
-                }
-            }
+    private function _getOnePosition(){
+        $Position = M("Position");
+        $position = $Position->where("position_style = 2")->order("rand()")->find();
+        if($position){
+            return array(
+                "title" => $position['position_title'],
+                "description" => strip_tags($position['article_content']),
+                "img_url"   => $position['position_image'],
+                "url"   => URLManager::getURL(Description\CategoryDescription::CATEGORY_POSITION, $position['id'])
+            );
+        }else{
+            return false;
         }
-        return false;
+    }
+    private function _qa($keyword){
+        $keyword = trim($keyword);
+        $responseResult = false;
+        if($keyword){
+            switch($keyword){
+                case "有色图":
+                case "性感":
+                    $images = $this->_getOneGroupImage();
+                    $news = array();
+                    foreach($images as $img){
+                        $news = array(
+                            "Title" => $img["img_title"],
+                            "Description" => "最全，最劲爆的美女图片，尽在爱爱有色图。",
+                            "Url"  => \Common\Manager\URLManager::getURL(\Common\Description\CategoryDescription::CATEGORY_IMAGE, $img["img_group_id"]),
+                            "PicUrl" => $img['img_url'],
+                        );
+                        break;
+                    }
+                    $responseResult = $this->_getWechat()->replyNewsOnce($news['Title'],$news["Description"],$news['Url'],$news['PicUrl']);
+                    break;
+                case "?":
+                case "？":
+                case "帮助":
+                    $responseContent  = "使用帮助：\n";
+                    $responseContent .= "1.直接回复：姿势或者招式，即可随机显示御女大招。\n";
+                    $responseContent .= "2.直接回复：有色图，即可随机显示性感美女私房图。\n";
+                    $responseContent .= "3.直接回复聊天内容，即可和我聊天哦。\n";
+                    $responseContent .= "4.直接回复:?或者帮助，即可查看使用小提示哦。\n";
+                    $responseResult = $this->_getWechat()->replyText($responseContent);
+                    break;
+                case "姿势":
+                case "性姿势":
+                case "招式":
+                    $responseContent = $this->_getOnePosition();
+                    if($responseContent){
+                        $responseResult = $this->_getWechat()->replyNewsOnce($responseContent['title'], $responseContent['description'], $responseContent['url'], $responseContent['img_url']); //回复单条图文消息
+                    }else{
+                        $responseResult = $this->_getWechat()->replyText("抱歉，没找到，对不起。");
+                    }
+                    break;
+                default:
+                    $QA = M("Qa");
+                    $item = $QA->where("keyword like '{$keyword}'")->find();
+                    if($item){
+                        $QaContent = M("QaContent");
+                        $item = $QaContent->find($item['content_id']);
+                        if($item){
+                            $responseResult = $this->_getWechat()->replyText("抱歉，没找到，对不起。");
+                        }
+                    }
+            }
+
+        }
+        return $responseResult;
     }
     private function _getWechat(){
         if($this->wechat != null){
@@ -225,7 +287,12 @@ class IndexController extends Controller {
         return null;
 
     }
-    public function test(){
 
+    private function _getOneGroupImage(){
+        $ImageModel = new \Common\Model\ImageModel();
+        return $ImageModel->getOneGroupImgByRand();
+    }
+    public function test(){
+        dump($this->_qa("性感"));
     }
 }

@@ -5,8 +5,9 @@ use Think\Controller;
 use PredictionIO\PredictionIOClient;
 class IndexController extends Controller {
     public function index(){
+        $url = "http://m.aiai.im/Image/lists";
 
-        $this->display();
+        header("Location: {$url}");
     }
 
     public function m(){

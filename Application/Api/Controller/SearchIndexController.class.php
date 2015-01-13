@@ -20,6 +20,19 @@ class SearchIndexController extends Controller {
         $SearchIndexService->genQAIndex();
 
     }
+    public function genAllIndex(){
+        $SearchIndexService = new SearchIndexService();
+        $SearchIndexService->genArticleIndex();
+        $SearchIndexService->genPositionIndex();
+        $SearchIndexService->genQAIndex();
+    }
+    public function updateAllIndex(){
+        $SearchIndexService = new SearchIndexService();
+        $SearchIndexService = $SearchIndexService->setOptType("update");
+        $SearchIndexService->genArticleIndex();
+        $SearchIndexService->genPositionIndex();
+        $SearchIndexService->genQAIndex();
+    }
     public function test(){
         $SearchIndexService = new SearchIndexService();
         var_dump($SearchIndexService->genQAIndexByIds(29));

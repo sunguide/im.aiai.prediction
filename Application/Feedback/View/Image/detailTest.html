@@ -1,0 +1,63 @@
+<extend name="Public/base" />
+<block name="title"><title>{$title}</title></block>
+<block name="main">
+    <style>
+        .banner { position: relative; overflow: auto; }
+        .banner li { list-style: none; }
+        .banner ul li { float: left; }
+    </style>
+    <div class="container-fluid">
+        <div id="carousel-images" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <foreach name="imgs" item="vo" key="k" >
+                    <li data-target="#carousel-images" data-slide-to="{$k}" class="{$k?'':'active'}"></li>
+                </foreach>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <foreach name="imgs" item="vo" key="k" >
+
+                    <div class="item {$k?'':'active'}">
+                        <img src="{$vo.img_url}?2imageView2/1/w/400/h/200/q/50" alt="{$vo.img_title}">
+                        <div class="carousel-caption">
+                            {$vo.img_title}
+                        </div>
+                    </div>
+
+                </foreach>
+            </div>
+        </div>
+        <div class="banner">
+            <ul>
+                <foreach name="imgs" item="vo" key="k" >
+                   <li><img src="{$vo.img_url}?2imageView2/1/w/400/h/200/q/50"></li>
+                </foreach>
+            </ul>
+        </div>
+        <!--<div class="row">-->
+            <!--<foreach name="imgs" item="vo" key="k" >-->
+
+                <!--<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">-->
+                    <!--<a href="{$vo.img_url}" target="_blank">-->
+                        <!--<img src="{$vo.img_url}?imageView2/2/w/400/q/100" class="img-responsive">-->
+                    <!--</a>-->
+                <!--</div>-->
+
+            <!--</foreach>-->
+
+        <!--</div>-->
+    </div>
+<script>
+    $(function() {
+        $('.banner').unslider();
+        $('#carousel-images').hammer().bind('swipeleft', function(){
+            $(this).carousel('next');
+        });
+        $('#carousel-images').hammer().bind('swiperight', function(){
+            $(this).carousel('prev');
+        });
+    });
+</script>
+</block>
