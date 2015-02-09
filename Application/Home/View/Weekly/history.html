@@ -1,0 +1,33 @@
+<extend name="Weekly/base" />
+<block name="title"><title>{$title}</title></block>
+<block name="main">
+    <div class="container">
+        <!--<header id="header">-->
+            <!--<div class="header-wrap fn-clear">-->
+                <!--<h1 id="logo" class="fn-left">-->
+                    <!--<a href="http://weekly.aiai.im" title="爱爱周刊">爱爱周刊</a>-->
+                <!--</h1>-->
+                <!--<p class="login fn-right">已有账户？<a href="http://weixin.drip.im/user/login">点此登录</a></p>	</div>-->
+        <!--</header>-->
+        <section class="posts">
+            <div class="row title" style="padding-top: 80px;text-align: center;">
+                <h1>《爱爱周刊》</h1>
+            </div>
+            <ul class="posts">
+
+                <volist name="weeklys" id="item">
+                    <li class="list-item" data-id="{$item.id}">
+                        <div class="list-item-detail">
+                            <a class="title" href="/detail/id/{$item.id}.html" title="{$item.title}">{$item.title}</a>
+                        </div>
+                        <a class="item-link" href="/detail/id/{$item.id}.html" title="{$item.title}"></a>
+                    </li>
+                </volist>
+
+            </ul>
+        </section>
+    </div>
+    <script>
+
+    </script>
+</block>

@@ -1,0 +1,59 @@
+<extend name="Weekly/base" />
+<block name="title"><title>{$title}</title></block>
+<block name="header_load">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/assets/simditor-2.0.4/styles/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/assets/simditor-2.0.4/styles/simditor.css" />
+    <script type="text/javascript" src="__PUBLIC__/admin/assets/simditor-2.0.4/scripts/module.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/admin/assets/simditor-2.0.4/scripts/hotkeys.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/admin/assets/simditor-2.0.4/scripts/uploader.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/admin/assets/simditor-2.0.4/scripts/simditor.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/admin/assets/simditor-2.0.4/scripts/simditor-dropzone.js"></script>
+</block>
+<block name="main">
+    <div class="container">
+        <div class="row title" style="padding-top: 80px;text-align: center;">
+            <h1>欢迎投稿《爱爱周刊》</h1>
+        </div>
+        <div class="row publish" style="max-width: 750px;margin: auto;">
+            <form method="post" class="weekly-form" action="__SELF__" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="hidden" name="id" class="form-control" value="{$article.id}">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="title" class="form-control" value="{$article.title}" class="form-control" placeholder="标题（必填）">
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="text" name="author_name" class="form-control" value="{$article.author_name}" class="form-control" placeholder="作者（选填）">
+                    <!--<span class="glyphicon glyphicon-chevron-down form-control-feedback" onclick="alert('dddd')" aria-hidden="true"></span>-->
+                </div>
+                <div class="form-group">
+                    <input type="text" name="author_url" class="form-control" value="{$article.author_url}" class="form-control" placeholder="作者主页或邮箱（选填）">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="source" class="form-control" value="{$article.source}" class="form-control" placeholder="原文地址（选填）">
+                </div>
+                <textarea id="editor" name="article" style="text-align: left;" class="form-control" placeholder="这里输入内容（选填）" autofocus>{$article.content}</textarea>
+                <div class="text-right">
+                    <br>
+                    <button type="submit" target-form="weekly-form" style="border-radius: 4px;" class="btn btn-ion btn-success ajax-post">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        $(function(){
+            var editor = new Simditor({
+                defaultImage: '__PUBLIC__/admin/assets/simditor-2.0.4/images/image.png',
+                upload:{
+                    url:'http://prediction.aiai.im/admin/upload/image?access_token=c92585a8dec3a3d632afc2e834d3849b',
+                    params: null,
+                    fileKey: 'upload_file',
+                    connectionCount: 5,
+                    pasteImage:true,
+                    leaveConfirm: '正在上传文件，如果离开上传会自动取消'
+                },
+                textarea: $('#editor')
+            });
+        });
+    </script>
+</block>

@@ -1,0 +1,40 @@
+<extend name="Weekly/base" />
+<block name="title"><title>{$title|default="爱爱周刊 - 让我们抛开世俗的观念，直接谈论性！。"}</title></block>
+<block name="main">
+    <div class="container">
+        <!--<header id="header">-->
+            <!--<div class="header-wrap fn-clear">-->
+                <!--<h1 id="logo" class="fn-left">-->
+                    <!--<a href="http://weekly.aiai.im" title="爱爱周刊">爱爱周刊</a>-->
+                <!--</h1>-->
+                <!--<p class="login fn-right">已有账户？<a href="http://weixin.drip.im/user/login">点此登录</a></p>	</div>-->
+        <!--</header>-->
+        <section class="posts">
+            <div class="row title" style="padding-top: 80px;text-align: center;">
+                <h1>{$weekly.title}</h1>
+            </div>
+            <ul class="posts">
+
+                <volist name="articles" id="article">
+                    <li class="list-item" data-id="{$article.id}">
+                        <div class="list-item-detail">
+                            <empty name="article.source">
+                                <a class="title" href="/article/id/{$article.id}" title="{$article.title}">{$article.title}</a>
+                                <else />
+                                <a class="title" href="{$article.source}" title="{$article.title}">{$article.title}</a>
+                            </empty>
+                            <div class="author-info">
+                                <a href="{$article.author_url|default='#'}"><span>{$article.author_name}</span></a>
+                            </div>
+                        </div>
+                        <a class="item-link" href="/article/id/{$article.id}" title="{$article.title}"></a>
+                    </li>
+                </volist>
+
+            </ul>
+        </section>
+    </div>
+    <script>
+
+    </script>
+</block>

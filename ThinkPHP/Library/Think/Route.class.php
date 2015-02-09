@@ -24,11 +24,20 @@ class Route {
         }
         // URL映射定义（静态路由）
         $maps   =   C('URL_MAP_RULES');
+        // 改进 URL映射定义（静态路由）满足指定带请求协议和域名的url指向 author:sunguide@qq.com
+        $currentURL = ($_SERVER['HTTPS'] == "on" ? "https://" : "http://") . $_SERVER['HTTP_HOST'] .$_SERVER['REQUEST_URI'];
+
+        if(isset($maps[$currentURL])) {
+            $var    =   self::parseUrl($maps[$currentURL]);
+            $_GET   =   array_merge($var, $_GET);
+            return true;
+        }
+
         if(isset($maps[$regx])) {
             $var    =   self::parseUrl($maps[$regx]);
             $_GET   =   array_merge($var, $_GET);
             return true;                
-        }        
+        }
         // 动态路由处理
         $routes =   C('URL_ROUTE_RULES');
         if(!empty($routes)) {

@@ -23,7 +23,7 @@ class QueueService extends Service {
         if(empty($config)){
             $config = array (
                 'host'          => '127.0.0.1',
-                'port'          => 6379,
+                'port'          => 6380,
                 'timeout'       => false,
                 'persistent'    => false,
                 'auth'			=> false,

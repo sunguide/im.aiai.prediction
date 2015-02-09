@@ -1,0 +1,6 @@
+{
+    "src":          "/home/wwwroot/prediction.aiai.im/Public",
+    "dest":         "qiniu:access_key=uA6iVPDbShXZNNXPLe9pWtfzGjQ9wcPJoPrTW43I&secret_key=A6LZhZe-L0RZHoN38ozsXsBFiOA-KCgKxglqeU08&bucket=aiaicdn&key_prefix=Public/&threshold=1000000",
+    "deletable":    0,
+    "debug_level":  1
+}

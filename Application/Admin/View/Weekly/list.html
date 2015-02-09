@@ -19,6 +19,7 @@
                         <th>ID</th>
                         <th>标题</th>
                         <th>作者</th>
+                        <th>状态</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -28,7 +29,8 @@
                                 <td>{$article.id}</td>
                                 <td>{$article.title}</td>
                                 <td>{$article.author_name}</td>
-                                <td><a href="__CONTROLLER__/edit/id/{$article.id}" class="btn btn-ion btn-info">编辑</a></td>
+                                <td>{$article['status']?"已发布":"未发布"}</td>
+                                <td><a href="__CONTROLLER__/create/id/{$article.id}" class="btn btn-ion btn-info">编辑</a></td>
                             </tr>
                         </volist>
                     </tbody>

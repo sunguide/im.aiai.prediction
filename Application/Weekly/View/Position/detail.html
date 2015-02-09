@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>{$item['position_title']}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/static/css/bootstrap.original.min.css">
+    <script src="http://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+    <style>
+        html,body,p,span{
+            color: rgb(54, 59, 66);
+            font-family: '微软雅黑';
+            font-size: 14px;
+            orphans: 2;
+            widows: 2;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <h3>{$item['position_title']}</h3>
+    <p>作者：小爱</p>
+    <div>
+        <img src="{$item['position_image']}" class="img-thumbnail" style="max-height:200px;">
+    </div>
+    <div>
+        <p>{$item['article_content']}</p>
+    </div>
+
+    <div class="ad">
+        <a href="http://s.click.taobao.com/t?e=m%3D2%26s%3Dby2ImEeSbPscQipKwQzePDAVflQIoZepK7Vc7tFgwiFRAdhuF14FMXJxwwvm6ZHTMMgx22UI05Z%2F3ZxusC4u%2Fwafh3ExEzoFScBJHgrxJh3WH1W4%2Fk5dEv7PLn6HZvL%2F" target="_blank">
+            <img src="http://aiaifiles.qiniudn.com/ad_gangben.png" style="width: 100%;"/>
+        </a>
+    </div>
+    <script type="text/javascript">
+        document.write('<a style="display:none!important" id="tanx-a-mm_27828641_4254935_28202547"></a>');
+        tanx_s = document.createElement("script");
+        tanx_s.type = "text/javascript";
+        tanx_s.charset = "gbk";
+        tanx_s.id = "tanx-s-mm_27828641_4254935_28202547";
+        tanx_s.async = true;
+        tanx_s.src = "http://p.tanx.com/ex?i=mm_27828641_4254935_28202547&m=1";
+        tanx_h = document.getElementsByTagName("head")[0];
+        if(tanx_h)tanx_h.insertBefore(tanx_s,tanx_h.firstChild);
+    </script>
+</div>
+<script type="text/javascript">
+    $(function(){
+        var screen_width = $("body").width();
+        $('img').load(function(){
+            if ($(this).width() > screen_width) {
+                var offset = $(this).position().left;
+                $(this).css('max-width', screen_width-offset*2);
+            }
+        });
+
+    });
+</script>
+</body>
+</html>

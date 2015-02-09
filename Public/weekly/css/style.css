@@ -1,0 +1,162 @@
+/* weekly.aiai.im
+ * author:love@aiai.im
+ */
+
+body{
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+    /*padding: 0 0 360px;*/
+    /*position: absolute;*/
+}
+/*消息通知*/
+ul.messenger.messenger-fixed.messenger-on-top {
+    top: 60px;
+}
+section.posts {
+    min-height: 400px;;
+}
+.form-control {
+    border-color: #e5e5e5;
+    border-radius: 2px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.list-item{
+    position: relative;
+}
+.posts .title{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.article-detail.title h3 i{
+    font-size: 18px;
+    margin: 0 8px;
+    color: #3deeb3;
+}
+.footer {
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*bottom: 0;*/
+    width: 100%;
+    color: #747f8c;
+    text-align: center;
+    background: #333333;/*#332e36;*/
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-top: 1px solid #1d111e;
+    margin-bottom: -50px;
+}
+
+@media screen and (min-width: 48.0625em) {
+    .footer {
+        text-align: left;
+        height: 360px
+    }
+}
+
+.subscribe-email {
+    margin-bottom: 40px
+}
+
+.subscribe-email h3 {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 4px
+}
+
+.subscribe-email p {
+    font-size: 12px
+}
+
+.subscribe-email .form-email {
+    margin-top: 20px;
+    margin: 20px auto 0;
+}
+
+.subscribe-email .input-email {
+    border-radius: 3px;
+    width: 200px;
+    padding: 10px;
+    margin-right: 10px;
+    line-height: 40px;
+    height: 40px;
+    display: inline-block;
+}
+
+.subscribe-email .input-subscribe {
+    padding: 10px 20px;
+    background: #1ed0e1;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.subscribe-email .input-subscribe:hover {
+    background: #18a6b4
+}
+
+.copyright {
+    font-size: 14px;
+    margin-bottom: 20px
+}
+
+@media screen and (min-width: 48.0625em) {
+    .copyright {
+        margin-bottom: 0
+    }
+}
+
+.copyright .info {
+    font-size: 12px
+}
+
+.copyright p + p {
+    font-size: 12px
+}
+
+@media screen and (min-width: 48.0625em) {
+    .footer-follow {
+        float: right;
+        margin-top: 14px
+    }
+}
+
+.footer-follow li {
+    display: inline-block;
+    margin-left: 10px
+}
+
+.footer-follow a {
+    display: inline-block;
+    text-indent: -999em
+}
+.text-align-center{
+    text-align: center;
+}
+
+ul.posts{
+    list-style:none;
+}
+.list-item-detail{
+    position: relative;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px 10px;
+}
+.list-item-detail .item-link {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.list-item-detail a.title {
+    text-decoration: none;
+    color: #1ed0e1;
+    font-size: 1.5em;
+}
+.list-item-detail .author-info a span{
+    color: #5b5559;
+    font-size: 1em;
+}

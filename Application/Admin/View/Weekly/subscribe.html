@@ -1,0 +1,39 @@
+<extend name="Public/base" />
+<block name="title"><title>{$title}</title></block>
+<block name="main">
+    <div class="content-app fixed-header">
+        <div class="app-body">
+            <div class="box">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>用户ID</th>
+                        <th>邮箱</th>
+                        <th>订阅时间</th>
+                        <th>更新时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <volist name="subscribes" id="subscribe">
+                            <tr>
+                                <td>{$subscribe.id}</td>
+                                <td>{$subscribe.user_id}</td>
+                                <td>{$subscribe.email}</td>
+                                <td>{$subscribe.create_time|date="Y-m-d H:i",###}</td>
+                                <td>{$subscribe.update_time|date="Y-m-d H:i",###}</td>
+                                <td>{$subscribe['status']?"已订阅":"已取消"}</td>
+                                <td><a href="__CONTROLLER__/{subscribe.id}" class="btn btn-ion btn-info">查看</a></td>
+                            </tr>
+                        </volist>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+
+    </script>
+</block>

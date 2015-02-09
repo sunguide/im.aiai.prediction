@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="爱爱周刊 - 让我们抛开世俗的观念，直接谈论性！。">
+    <meta name="keywords" content="爱爱周刊, 爱爱, 性爱, 做爱, 性爱秘籍, 房事秘籍, 性爱秘籍, 性爱技巧">
+    <meta name="author" content="爱爱周刊,爱爱">
+
+    <block name="title"><title>爱爱周刊 - 让我们抛开世俗的观念，直接谈论性！。</title></block>
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?=getCDNFile('/Public/assets/ionicons-2.0.1/css/ionicons.min.css')?>" rel="stylesheet">
+
+    <link href="__PUBLIC__/home/css/app.css" rel="stylesheet">
+    <!-- Documentation extras -->
+    <link href="__PUBLIC__/assets/messenger/css/messenger.css" rel="stylesheet">
+    <link href="__PUBLIC__/assets/messenger/css/messenger-theme-flat.css" rel="stylesheet">
+    <link href="__PUBLIC__/weekly/css/style.css" rel="stylesheet">
+    <!--[if lt IE 9]><script src="../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="<?=getCDNFile('/Public/js/ie-emulation-modes-warning.js')?>"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <block name="header_load"></block>
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="/favicon.ico">
+    <script>
+        var _hmt = _hmt || [];
+    </script>
+</head>
+<body class="bs-docs-home">
+
+<block name="menu">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background: #333;">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">爱爱</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="__CONTROLLER__">爱爱周刊</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="{:U('/history')}">往期</a>
+                    </li>
+                    <li>
+                        <a href="{:U('/publish')}" target="_blank">投稿</a>
+                    </li>
+                    <!--<li>-->
+                        <!--<a href="#">登陆</a>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+</block>
+
+<block name="main">
+
+    <div class="container">
+
+    </div>
+
+</block>
+
+<block name="footer">
+    <footer class="footer">
+        <div class="subscribe-email row text-center">
+            <h3>您也可以通过电子邮件订阅《爱爱周刊》每周的更新</h3>
+            <p>我们不会公开您的邮箱，您还可以随时取消订阅</p>
+            <form accept-charset="UTF-8" action="{:U('/subscribe')}" class="subscribe_form form-email" id="mc-embedded-subscribe-form" method="post"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="/9XzaYZKYHAjdQhq5RDjgyJn29pzQX/k9ItFP3GP/LA="></div>
+                <input class="input-email form-control" id="subscribe_email" name="email" placeholder="输入您的邮箱" required="required" type="email">
+                <a class="input-subscribe btn btn-info ajax-post" target-form="subscribe_form" href="__CONTROLLER__/subscribe">订阅</a>
+            </form>  </div>
+        <div class="row text-align-center">
+            <div class="copyright">
+                <p>Copyright &copy; 2014-2015 <strong>Aiai Weekly</strong>. All Rights Reserved. </p>
+                <div class="safe"><b class="icon-safe"></b>正在为您的数据提供银行级别的安全保障</div>
+            </div>
+        </div>
+    </footer>
+    <!-- CNZZ统计代码开始 -->
+    <!--{$config.site_statistic}-->
+    <!-- CNZZ统计代码结束 -->
+</block>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/assets/messenger/js/messenger.min.js"></script>
+
+<script src="__PUBLIC__/js/common.js"></script>
+
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="<?=getCDNFile('/Public/js/ie10-viewport-bug-workaround.js')?>"></script>
+
+
+
+<!-- Analytics
+================================================== -->
+<script type="text/javascript">
+    $(window).resize(function(){
+//       $(".footer").resize();
+    });
+    $(function(){
+        if(document.body.scrollHeight < window.screen.availHeight){
+            document.body.scrollHeight = window.screen.availHeight;
+        }
+    });
+</script>
+
+</body>
+</html>

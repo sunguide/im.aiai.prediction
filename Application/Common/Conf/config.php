@@ -9,6 +9,7 @@
     require_cache("../Commom/functions.php");
     define('URL_CALLBACK', 'http://www.aiai.im/index.php?m=Account&a=callback&type=');
     define("APP_VERSION", "1.0.0");
+    define("CDN_DOMAIN","http://aiaicdn.qiniudn.com");
     return array(
         'APP_ENCRYPTION_KEY'    => "5yaoaiai",//自定义应用加密KEY
         'LANG_SWITCH_ON' => true,
@@ -28,6 +29,9 @@
             'search'        => 'Articles/search',
 
         ),
+        'URL_MAP_RULES' => array( //定义路由规则
+            'http://weekly.aiai.im/' => 'Weekly/publish',
+        ),
         'LOG_RECORD' => true,
         //子域名部署
 
@@ -40,9 +44,10 @@
             'm.aiai.im'     => 'Mobile',  //m.aiai.im 指向Mobile模块
             'api.aiai.im'   => 'Api',
             'app.aiai.im'   => 'App',
-            'admin.aiai.im' => 'Admin'
+            'admin.aiai.im' => 'Admin',
+            'weekly.aiai.im' => 'Home/Weekly'
         ),
-        'URL_MODEL'     => 1,
+        'URL_MODEL'     => 2,
         'TMPL_EXCEPTION_FILE' => APP_PATH.'/Common/Tpl/Public/exception.tpl',
         'X_POWERED_BY'  => 'Aiai Inc.',
 
@@ -56,6 +61,20 @@
         'DATA_REDIS_PORT'		=>  '6379',	       //端口,如果相同只填一个,用英文逗号分隔
         'DATA_REDIS_AUTH'       =>  '',            //redis123456Redis auth认证(密钥中不能有逗号),如果相同只填一个,用英文逗号分隔
         ////////////////数据缓存end/////////////
+
+        ////////////////邮件配置///////////////
+
+        'THINK_EMAIL' => array(
+            'SMTP_HOST'     => 'smtp.exmail.qq.com',
+            "SMTP_PORT"     => '465',
+            "SMTP_USER"     => 'admin@aiai.im',
+            "SMTP_PASS"     => '5yaoaiai',
+            "FROM_EMAIL"    => 'admin@aiai.im',
+            "FROM_NAME"     => '爱爱周刊',
+            "REPLY_EMAIL"   => '',//回复EMAIL留空则为发件人邮箱
+            "REPLY_NAME"    => '' //回复名称，留空则为发件人姓名
+        ),
+        ////////////////邮件配置end/////////////
         //腾讯QQ登录配置
         'THINK_SDK_QQ' => array(
             'APP_KEY'    => '100522698', //应用注册成功后分配的 APP ID

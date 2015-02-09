@@ -7,7 +7,7 @@
         <a href="index.html">
             <!-- <i class="icon ion-waterdrop"></i> -->
             <img src="__PUBLIC__/admin/assets/app/img/brand.png" alt="Brand">   <!-- 32px image logo -->
-
+            爱爱后台
         </a>
     </h1><!-- /brand -->
 
@@ -119,12 +119,39 @@
 <nav class="side-nav">
 <!-- open nav ul -->
 <ul>
-<li class="side-nav-item active">
+<li class="side-nav-item">
     <a href="/">
         <i class="nav-item-icon icon ion-ios7-speedometer-outline"></i>
         控制台
     </a>
 </li><!-- /coverage -->
+<volist name="navs" id="nav">
+    <li class="side-nav-item {$nav.class}">
+        <a href="#nav-{$nav.name}">
+            <span class="badge">{$nav.badge}</span>
+            <i class="nav-item-caret"></i>
+            <i class="nav-item-icon icon {$nav.icon}"></i>
+            {$nav.title}
+        </a>
+        <ul id="nav-{$nav.name}" class="side-nav-child {$nav['class']?'open':''}">
+            <li class="side-nav-item-heading">
+                <a href="#" class="side-nav-back">
+                    <i class="nav-item-caret"></i>
+                    {$nav.title}
+                </a>
+            </li><!-- /header ui elements child -->
+            <volist name="nav['child']" id="nav">
+                <li class="side-nav-item {$nav.class}">
+                    <a href="{$nav.url}">
+                        <span class="badge">{$nav.badge}</span>
+                        <i class="nav-item-icon icon {$nav.icon}"></i>
+                        {$nav.title}
+                    </a>
+                </li><!-- /components -->
+            </volist>
+        </ul>
+    </li>
+</volist>
 <li class="side-nav-item">
     <a href="#layouts">
         <i class="nav-item-caret"></i>
@@ -177,6 +204,7 @@
         Messages
     </a>
 </li><!-- /messages -->
+
 <li class="side-nav-item">
     <a href="#uielements">
         <span class="badge">7</span>

@@ -1,8 +1,13 @@
 <?php
-namespace Command\Controller;
+namespace Command\Crontab;
+use Command\Controller\BaseController;
+class DayCrontab extends baseController {
 
-class CrontabController extends CommandController {
-    public function test(){
-        $this->out("我是你爸爸");
+    public static function start(){
+        $works = array();
+//        $works[] = "Command/Test/test";
+        $works[] = "Command/CleanLog/clean";//清除七天以上的日志
+
+        return $works;
     }
 }

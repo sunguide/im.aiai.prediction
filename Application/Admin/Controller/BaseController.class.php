@@ -40,6 +40,7 @@ class BaseController extends Controller{
             header("Access-Control-Allow-Headers:origin, x-csrftoken, content-type, accept");
             exit;
         }
+        $this->_navs();
     }
     /**
      * 重写 输出返回数据
@@ -55,6 +56,15 @@ class BaseController extends Controller{
             "code"  => intval($errorCode)
         ));
     }
+    /**
+     * 设置临时调试模式
+     * @access protected
+     * @return void
+     */
+    protected function setDebug(){
+        $_GET['debug'] = 1;
+    }
+
     protected function response($data,$type='json',$code=200) {
         header("Access-Control-Allow-Origin:*");
         header("Access-Control-Allow-Methods:POST, GET, OPTIONS, PUT, DELETE");
@@ -142,5 +152,35 @@ class BaseController extends Controller{
             // 确保FastCGI模式下正常
             header('Status:'.$code.' '.$_status[$code]);
         }
+    }
+    private  function _navs(){
+        $navConfigs = C("APP_ADMIN_LEFT_NAV");
+        $navs = array();
+        if($navConfigs){
+            $navConfigs = explode(",", $navConfigs);
+            foreach($navConfigs as $navConfig){
+                $class = __NAMESPACE__."\\".$navConfig."Controller";
+                if(class_exists($class) && method_exists($class,"_nav")){
+                    $_navs = $class::_nav();
+                    if(!empty($_navs)){
+                        $navs[] = $_navs;
+                    }
+                }
+            }
+        }
+        $currentUrl = get_current_url();
+        foreach($navs as $k => $nav){
+            if(false !== strpos($currentUrl,$nav['name'])){
+                $navs[$k]['class'] = "active";
+                if(!empty($nav['child'])){
+                    foreach($nav['child'] as $k1 => $nav1){
+                        if(false !== strpos($currentUrl,$nav1['name'])){
+                            $navs[$k]['child'][$k1]['class'] = "active";
+                        }
+                    }
+                }
+            }
+        }
+        $this->assign("navs",$navs);
     }
 } 

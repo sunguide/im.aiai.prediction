@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d7dde670ea91a38834da8a8775a53d42",
+    "hash": "9552278581a035a229769cf984b21cb1",
     "packages": [
         {
             "name": "guzzle/guzzle",
@@ -99,17 +99,70 @@
             "time": "2014-01-28 22:29:15"
         },
         {
-            "name": "predictionio/predictionio",
-            "version": "v0.7.1",
+            "name": "phpmailer/phpmailer",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/PredictionIO/PredictionIO-PHP-SDK.git",
-                "reference": "41a538f5082b0da74596bb73ee88c77bc199edc3"
+                "url": "https://github.com/PHPMailer/PHPMailer.git",
+                "reference": "34b33d9e3fd5b08fe2d397dca514058162dbf084"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PredictionIO/PredictionIO-PHP-SDK/zipball/41a538f5082b0da74596bb73ee88c77bc199edc3",
-                "reference": "41a538f5082b0da74596bb73ee88c77bc199edc3",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/34b33d9e3fd5b08fe2d397dca514058162dbf084",
+                "reference": "34b33d9e3fd5b08fe2d397dca514058162dbf084",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.0.0"
+            },
+            "require-dev": {
+                "phpdocumentor/phpdocumentor": "*",
+                "phpunit/phpunit": "4.1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "class.phpmailer.php",
+                    "class.pop3.php",
+                    "class.smtp.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "Jim Jagielski",
+                    "email": "jimjag@gmail.com"
+                },
+                {
+                    "name": "Marcus Bointon",
+                    "email": "phpmailer@synchromedia.co.uk"
+                },
+                {
+                    "name": "Andy Prevost",
+                    "email": "codeworxtech@users.sourceforge.net"
+                },
+                {
+                    "name": "Brent R. Matzelle"
+                }
+            ],
+            "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+            "time": "2015-01-09 13:15:29"
+        },
+        {
+            "name": "predictionio/predictionio",
+            "version": "v0.6.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PredictionIO/PredictionIO-PHP-SDK.git",
+                "reference": "d12f6102ce1a4ea74d22e8789148c0d25c367436"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PredictionIO/PredictionIO-PHP-SDK/zipball/d12f6102ce1a4ea74d22e8789148c0d25c367436",
+                "reference": "d12f6102ce1a4ea74d22e8789148c0d25c367436",
                 "shasum": ""
             },
             "require": {
@@ -147,7 +200,93 @@
                 "tappingstone",
                 "web service"
             ],
-            "time": "2014-05-10 01:14:02"
+            "time": "2014-02-05 09:26:26"
+        },
+        {
+            "name": "qiniu/qiniu",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hfcorriez/php-qiniu.git",
+                "reference": "f819cbe15ef6cdd4c994d5bb9b70184d37fcee71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hfcorriez/php-qiniu/zipball/f819cbe15ef6cdd4c994d5bb9b70184d37fcee71",
+                "reference": "f819cbe15ef6cdd4c994d5bb9b70184d37fcee71",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Qiniu": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Corrie Zhao",
+                    "email": "hfcorriez@gmail.com",
+                    "homepage": "http://feiyang.me"
+                }
+            ],
+            "description": "Qiniu SDK",
+            "keywords": [
+                "api",
+                "cloud storage",
+                "qiniu",
+                "sdk"
+            ],
+            "time": "2013-09-10 14:32:15"
+        },
+        {
+            "name": "shark/simple_html_dom",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/samacs/simple_html_dom.git",
+                "reference": "842b3fc1f9f0c70b8c1b2e93fc451834c42e384d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/samacs/simple_html_dom/zipball/842b3fc1f9f0c70b8c1b2e93fc451834c42e384d",
+                "reference": "842b3fc1f9f0c70b8c1b2e93fc451834c42e384d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.2.4"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "simple_html_dom.php"
+                ],
+                "files": [
+                    "simple_html_dom.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "S.C. Chen",
+                    "email": "me578022@gmail.com",
+                    "homepage": "http://simplehtmldom.sourceforge.net/"
+                }
+            ],
+            "description": "Simple HTML DOM package.",
+            "homepage": "http://simplehtmldom.sourceforge.net/",
+            "keywords": [
+                "dom",
+                "php dom"
+            ],
+            "time": "2014-10-17 00:16:28"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -156,22 +295,23 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "68ab3c3f50eae2b152075da722204d4de67f596f"
+                "reference": "c120a7677714cc779f7c2048abb9c8dae94c60c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/68ab3c3f50eae2b152075da722204d4de67f596f",
-                "reference": "68ab3c3f50eae2b152075da722204d4de67f596f",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/c120a7677714cc779f7c2048abb9c8dae94c60c0",
+                "reference": "c120a7677714cc779f7c2048abb9c8dae94c60c0",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.5.9"
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/config": "~2.0",
-                "symfony/dependency-injection": "~2.0",
-                "symfony/stopwatch": "~2.2"
+                "symfony/config": "~2.7|~3.0",
+                "symfony/dependency-injection": "~2.7|~3.0",
+                "symfony/expression-language": "~2.7|~3.0",
+                "symfony/stopwatch": "~2.7|~3.0"
             },
             "suggest": {
                 "symfony/dependency-injection": "",
@@ -180,7 +320,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev"
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
@@ -204,24 +344,16 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2014-07-28 13:20:53"
+            "time": "2015-01-16 22:00:38"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [
-
-    ],
+    "stability-flags": [],
     "prefer-stable": false,
     "platform": {
         "php": ">=5.3.0"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }

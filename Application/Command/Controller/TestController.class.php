@@ -1,6 +1,9 @@
 <?php
 namespace Command\Controller;
+use Think\Controller;
+class TestController extends CrontabController {
 
-class TestController extends CommandController {
-
+    public function test(){
+        $this->out("test".date("Y-m-d H:i:s"));
+    }
 }

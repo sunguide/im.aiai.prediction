@@ -1,0 +1,16 @@
+<extend name="Weekly/base" />
+<block name="title"><title>{$title}</title></block>
+<block name="main">
+    <div class="container">
+        <div class="row article-detail title" style="padding-top: 80px;text-align: center;">
+            <h3>{$article.title}<a href="#" title="查看原文：{$article.title}" ><i class="ion-navigate"></i></a></h3>
+            <a href="{$article.author_url|default='#'}" title="{$article.author_name}"><span>{$article.author_name}</span></a>
+        </div>
+        <div class="row publish" style="max-width: 750px;margin: 20px auto;">
+            {$article.content}
+        </div>
+    </div>
+    <script>
+
+    </script>
+</block>

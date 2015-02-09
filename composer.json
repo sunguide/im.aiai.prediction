@@ -13,9 +13,13 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "predictionio/predictionio": "~0.6.0",
+        "predictionio/predictionio": ">=0.7.1",
         "qiniu/qiniu": "*",
-        "shark/simple_html_dom":"*"
+        "shark/simple_html_dom":"*",
+        "phpmailer/phpmailer":"*"
     },
     "minimum-stability": "dev"
 }
+//更新composer: php composer.phar self-update
+//更新: php composer.phar update
+//安装新包: php composer.phar require "foo/bar:1.0.0"
