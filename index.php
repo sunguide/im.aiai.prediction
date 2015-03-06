@@ -22,9 +22,10 @@ set_exception_handler("err_handler");
 // 开启调试模式 建议开发阶段开启 部署阶段注释或者设为false
 define('APP_DEBUG',True);
 // 定义应用目录
-define('APP_PATH','./Application/');
+define('APP_PATH',__DIR__.'/Application/');//必须使用绝对路径
 // 引入composer
 require __DIR__. "/vendor/autoload.php";
+
 // 引入ThinkPHP入口文件
 require __DIR__ . '/ThinkPHP/ThinkPHP.php';
 

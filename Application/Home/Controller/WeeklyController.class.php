@@ -10,12 +10,12 @@ class WeeklyController extends BaseController {
         if($id){
             $conditions = array("weekly_id" => $id);
             $weeklyInfo = $WeeklyModel->find($id);
-            $articles = $WeeklyArticleModel->where($conditions)->select();
+            $articles = $WeeklyArticleModel->where($conditions)->order("id asc")->select();
         }else{
             $weeklyInfo = $WeeklyModel->where('status = 1')->order("id desc")->find();
             $conditions = array("weekly_id" => $weeklyInfo['id']);
             $conditions['weekly_id'] = $weeklyInfo['id'];
-            $articles = $WeeklyArticleModel->where($conditions)->select();
+            $articles = $WeeklyArticleModel->where($conditions)->order("id asc")->select();
         }
         $this->assign("weekly",$weeklyInfo);
         $this->assign("articles",$articles);

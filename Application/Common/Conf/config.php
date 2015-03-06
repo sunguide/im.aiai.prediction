@@ -45,7 +45,8 @@
             'api.aiai.im'   => 'Api',
             'app.aiai.im'   => 'App',
             'admin.aiai.im' => 'Admin',
-            'weekly.aiai.im' => 'Home/Weekly'
+            'weekly.aiai.im' => 'Home/Weekly',
+            'pay.aiai.im' => 'Pay',
         ),
         'URL_MODEL'     => 2,
         'TMPL_EXCEPTION_FILE' => APP_PATH.'/Common/Tpl/Public/exception.tpl',
