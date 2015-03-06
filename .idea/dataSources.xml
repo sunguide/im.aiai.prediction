@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1240612342">
+  <component name="DataSourceManagerImpl" format="xml" hash="209393658">
     <data-source source="LOCAL" name="MySQL - aiai" uuid="199f1ad3-51ee-419c-a8fb-0168ca1a3a2c">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <auto-commit>false</auto-commit>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://aiai.im:3306</jdbc-url>
-      <user-name>root</user-name>
-      <user-password>dfdddfc5dfd9dfc2dfc3dfc4dfc3dfc6dfcbdfc5df92</user-password>
       <driver-properties>
         <property name="zeroDateTimeBehavior" value="convertToNull" />
         <property name="tinyInt1isBit" value="false" />
@@ -17,4 +15,3 @@
     </data-source>
   </component>
 </project>
-
