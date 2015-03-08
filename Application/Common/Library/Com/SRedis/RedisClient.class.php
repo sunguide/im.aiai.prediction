@@ -136,6 +136,7 @@ class RedisClient
      * @param bool $right 是否从右边开始入
      */
     public function push($key, $value ,$right = true) {
+        self::connect(true);
         $key = $this->options['prefix'].$key;
         $value = json_encode($value);
         return $right ? $this->handler->rPush($key, $value) : $this->handler->lPush($key, $value);
@@ -147,6 +148,7 @@ class RedisClient
      * @param bool $left 是否从左边开始出数据
      */
     public function pop($key , $left = true) {
+        self::connect(true);
         $key = $this->options['prefix'].$key;
         $val = $left ? $this->handler->lPop($key) : $this->handler->rPop($key);
         return json_decode($val);
@@ -157,6 +159,7 @@ class RedisClient
      * @param string $key KEY名称
      */
     public function increment($key) {
+        self::connect(true);
         $key = $this->options['prefix'].$key;
         return $this->handler->incr($key);
     }
@@ -166,6 +169,7 @@ class RedisClient
      * @param string $key KEY名称
      */
     public function decrement($key) {
+        self::connect(true);
         $key = $this->options['prefix'].$key;
         return $this->handler->decr($key);
     }
@@ -175,6 +179,7 @@ class RedisClient
      * @param string $key KEY名称
      */
     public function exists($key) {
+        self::connect(true);
         $key = $this->options['prefix'].$key;
         return $this->handler->exists($key);
     }

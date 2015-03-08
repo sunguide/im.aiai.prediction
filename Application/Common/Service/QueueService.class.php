@@ -23,7 +23,7 @@ class QueueService extends Service {
         if(empty($config)){
             $config = array (
                 'host'          => '127.0.0.1',
-                'port'          => 6380,
+                'port'          => 6379,
                 'timeout'       => false,
                 'persistent'    => false,
                 'auth'			=> false,
@@ -55,6 +55,6 @@ class QueueService extends Service {
      * @param bool $left 是否从左边开始出数据
      */
     public function pop($key , $left = true) {
-        return self::$_instance->pushpop($key , $left);
+        return self::$_instance->pop($key , $left);
     }
 }

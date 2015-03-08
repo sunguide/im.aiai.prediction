@@ -1,5 +1,6 @@
 <?php
 namespace Command\Controller;
+use Common\Service\QueueService;
 use Think\Controller;
 class StockController extends CrontabController {
 
@@ -7,6 +8,12 @@ class StockController extends CrontabController {
         $this->out("test".date("Y-m-d H:i:s"));
     }
     public function crawler(){
+        $startTimeStrap = strtotime(date("Y-m-d"));
+        $nowTimeStrap = time();
+        $timeStrapStance = ($nowTimeStrap -$startTimeStrap);
+        if($timeStrapStance >  (3600 * 15 + 600) || $timeStrapStance < (3600 * 9)){
+            exit();
+        }
         echo "crawler start \n";
         $StockCodeModel = M("StockCode");
         $stocks = $StockCodeModel->order("id ASC")->select();
@@ -40,9 +47,9 @@ class StockController extends CrontabController {
                 $stockTradeCurrencyAmount = $stockData[8];//交易额
                 $stockTradeDate           = $stockData[30];
                 $stockTradeTime           = $stockData[31];
-                $identify                 = date("Ymd",strtotime($stockTradeDate)) . trim($stockCode,"shsz");
+                $id                 = date("Ymd",strtotime($stockTradeDate)) . trim($stockCode,"shsz");
                 $data = array(
-                    "id"              => $identify,
+                    "id"              => $id,
                     "code"            => trim($stockCode,"shsz"),
                     "name"            => $stockName,
                     "start_price"     => $stockTodayPrice,
@@ -54,13 +61,21 @@ class StockController extends CrontabController {
                     "trade_number"    => $stockTradeAmount,
                     "trade_amount"    => $stockTradeCurrencyAmount,
                     "trade_date"      => $stockTradeDate,
-                    "trade_time"      => $stockTradeTime
+                    "trade_time"      => $stockTradeTime,
                 );
-                $StockModel = M("Stock");
-                if($StockModel->find($identify)){
-                    $StockModel->where("id={$identify}")->save($data);
-                }else{
-                    $StockModel->add($data);
+                $identify = md5(json_encode($data));
+                $cacheInfo = S($id);
+                if(!$cacheInfo || $cacheInfo['identify'] != $identify){
+                    $data['identify'] = $identify;
+                    $StockModel = M("Stock");
+                    if($StockModel->find($id)){
+                        $StockModel->where("id={$id}")->save($data);
+                    }else{
+                        $StockModel->add($data);
+                    }
+                    $this->initCache();
+                    S($id,$data);
+                    QueueService::getInstance()->push(QUEUE_STOCK_ANALYSE,$data);
                 }
             }
         }
@@ -101,4 +116,34 @@ class StockController extends CrontabController {
         }
     }
 
+    private function comparePreTradeAmount($data){
+        $preStock = $this->getPreTradeStock($data['id']);
+        if($preStock){
+            if($data['trade_number'] > ($preStock['trade_number'] * 1.5)){
+                $emailNotice = array(
+                    "to"        => "sunguide@qq.com",
+                    "title"     => $data['name']."交易量大增50%以上:".$data['trade_number'],
+                    "content"   => $data['name']."交易量大增50%以上--Pre:".$preStock['trade_number']
+                );
+                QueueService::getInstance()->push("email_queue",$emailNotice);
+            }
+        }
+    }
+
+    private function initCache(){
+        S(array('type'=>'file','prefix'=>'stock','expire'=>36000));
+    }
+
+    private function getStockFromCache($id){
+        $stock = S($id);
+        if($stock){
+            return $stock;
+        }
+        $StockModel = M("Stock");
+        return $StockModel->find($id);
+    }
+    private function getPreTradeStock($id){
+        $StockModel = M("Stock");
+        return $StockModel->where("id < $id")->order("id DESC")->find();
+    }
 }
