@@ -1,6 +1,7 @@
 <?php
 namespace Command\Controller;
 use Common\Service\QueueService;
+use Command\Working\AnalyseWorking;
 use Think\Controller;
 class StockController extends CrontabController {
 
@@ -95,6 +96,9 @@ class StockController extends CrontabController {
             $stock++;
             $this->recordValidStock("sz".(str_pad($stock,6,"0",STR_PAD_LEFT)));
         }
+    }
+    public function analyse(){
+        AnalyseWorking::start();
     }
     private function recordValidStock($stockCode){
         $url = "http://hq.sinajs.cn/list={$stockCode}";

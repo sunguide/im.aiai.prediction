@@ -9,7 +9,9 @@ namespace Command\Working;
 use  Common\Service\QueueService;
 class AnalyseWorking extends QueueWorking {
 
-    public $queue = QUEUE_STOCK_ANALYSE;
+    public function getQueueName(){
+        return QUEUE_STOCK_ANALYSE;
+    }
     public function working($data){
 
         if($data){

@@ -8,14 +8,16 @@
 namespace Command\Working;
 use Common\Service\QueueService;
 class QueueWorking {
-
-    public $queue = "";
-
-    public function start(){
-        if($this->queue){
-            while($data = QueueService::getInstance()->pop($this->queue)){
-                $this->working(json_decode($data,true));
+    public static function start(){
+        $queue = self::getQueueName();
+        if($queue){
+            while($data = QueueService::getInstance()->pop($queue)){
+                self::working(json_decode($data,true));
             }
         }
+    }
+    public function working(){}
+    public function getQueueName(){
+        return "";
     }
 }
