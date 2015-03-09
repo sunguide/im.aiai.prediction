@@ -10,7 +10,7 @@ use Common\Service\QueueService;
 
 abstract class QueueWorking extends Working{
     protected $_max_execute_times = 180;
-    protected $_sleep_time = 5;
+    protected $_sleep_time = 5000;
 
     public function getQueueName(){
         return "";
@@ -23,6 +23,7 @@ abstract class QueueWorking extends Working{
             $this->out($queue." length:$len");
             while($data = QueueService::getInstance()->pop($queue)){
                 $this->working($data);
+                $this->_sleep_time && usleep($this->_sleep_time);
             }
         }else{
             die("请先配置需要获取的队列名.");

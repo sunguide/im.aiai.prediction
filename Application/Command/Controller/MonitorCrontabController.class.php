@@ -38,6 +38,16 @@ class MonitorCrontabController extends CrontabController {
             exec($cmd);
         }
     }
+    private function exec($cmd){
+        $date = date("Ymd");
+        $logName = $date."_".strtolower(str_replace("/","_",trim($cmd))).".log";
+        $c = 'cnt=`ps -ef | grep "'.$cmd.'" | grep -vc grep`
+            if [ $cnt -lt 2 ]; then
+            ps -ef | grep "'.$cmd.'" | grep -v grep|awk "{print $2}"|xargs kill -9
+            cd /home/wwwroot/prediction.aiai.im/ && php /home/wwwroot/prediction.aiai.im/g.php '.$cmd.'  >> /home/wwwroot/prediction.aiai.im/Logs/'.$logName.' &
+            fi';
+        exec($c);
+    }
     private function millisecond(){
         return (floor(microtime(true) * 1000));
     }

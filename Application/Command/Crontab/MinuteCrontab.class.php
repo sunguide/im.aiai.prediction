@@ -6,7 +6,7 @@ class MinuteCrontab extends BaseController {
     public static function start(){
         $works = array();
         $works[] = "Command/Stock/crawler";
-        $works[] = "Command/Email/start";
+        $works[] = "Command/Email/sending";
         $works[] = "Command/Stock/analyse";
 
         return $works;

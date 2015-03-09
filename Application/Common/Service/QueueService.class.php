@@ -61,7 +61,7 @@ class QueueService extends Service {
      */
     public function pop($key , $left = true) {
         $value = self::$_handler->pop($key , $left);
-        return json_decode($value,true);
+        return $value ? json_decode($value,true) : $value;
     }
 
     /**
