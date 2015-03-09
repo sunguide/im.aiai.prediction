@@ -183,6 +183,15 @@ class RedisClient
         $key = $this->options['prefix'].$key;
         return $this->handler->exists($key);
     }
+    /**
+     * 返回队列长度
+     * @param string $key KEY名称
+     */
+    public function len($key) {
+        self::connect(true);
+        $key = $this->options['prefix'].$key;
+        return $this->handler->lLen($key);
+    }
 
     /**
      * 关闭长连接

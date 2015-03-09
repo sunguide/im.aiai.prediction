@@ -7,17 +7,25 @@
  */
 namespace Command\Working;
 use Common\Service\QueueService;
-class QueueWorking {
-    public static function start(){
-        $queue = self::getQueueName();
-        if($queue){
-            while($data = QueueService::getInstance()->pop($queue)){
-                self::working(json_decode($data,true));
-            }
-        }
-    }
-    public function working(){}
+
+abstract class QueueWorking extends Working{
+    protected $_max_execute_times = 180;
+    protected $_sleep_time = 5;
+
     public function getQueueName(){
         return "";
+    }
+    public function start(){
+
+        $queue = $this->getQueueName();
+        if($queue){
+            $len = QueueService::getInstance()->len($queue);
+            $this->out($queue." length:$len");
+            while($data = QueueService::getInstance()->pop($queue)){
+                $this->working($data);
+            }
+        }else{
+            die("请先配置需要获取的队列名.");
+        }
     }
 }

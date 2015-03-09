@@ -46,7 +46,7 @@ class QueueService extends Service {
      * @param bool $right 是否从右边开始入
      */
     public function push($key, $value ,$right = true) {
-        return self::$_instance->push($key, $value ,$right);
+        return self::$_instance->push($key, json_encode($value) ,$right);
     }
 
     /**
@@ -55,6 +55,14 @@ class QueueService extends Service {
      * @param bool $left 是否从左边开始出数据
      */
     public function pop($key , $left = true) {
-        return self::$_instance->pop($key , $left);
+        return json_decode(self::$_instance->pop($key , $left),true);
+    }
+
+    /**
+     * 队列大小
+     * @param string $key KEY名称
+     */
+    public function len($key) {
+        return self::$_instance->len($key);
     }
 }

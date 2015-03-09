@@ -8,7 +8,7 @@ class QueueCrontabController extends BaseController {
     public function start(){
         if($this->queue){
             while($data = QueueService::getInstance()->pop($this->queue)){
-                $this->working(json_decode($data,true));
+                $this->working($data);
             }
         }
     }

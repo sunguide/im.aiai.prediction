@@ -12,10 +12,10 @@ class AnalyseWorking extends QueueWorking {
     public function getQueueName(){
         return QUEUE_STOCK_ANALYSE;
     }
-    public function working($data){
 
+    protected function working($data = array()){
         if($data){
-            $this->comparePreTradeAmount($data);
+            $this->comparePreTradeAmount((array)$data);
         }
     }
 
@@ -23,11 +23,13 @@ class AnalyseWorking extends QueueWorking {
         $preStock = $this->getPreTradeStock($data['id']);
         if($preStock){
             if($data['trade_number'] > ($preStock['trade_number'] * 1.5)){
+                $title = $data['name']."交易量大增50%以上:".$data['trade_number'];
                 $emailNotice = array(
                     "to"        => "sunguide@qq.com",
-                    "title"     => $data['name']."交易量大增50%以上:".$data['trade_number'],
+                    "title"     => $title,
                     "content"   => $data['name']."交易量大增50%以上--Pre:".$preStock['trade_number']
                 );
+                $this->out($title);
                 QueueService::getInstance()->push(QUEUE_EMAIL,$emailNotice);
             }
         }

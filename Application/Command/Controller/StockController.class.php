@@ -98,8 +98,18 @@ class StockController extends CrontabController {
         }
     }
     public function analyse(){
-        AnalyseWorking::start();
+        AnalyseWorking::getInstance()->start();
     }
+
+    public function reAnalyse(){
+        $StockCodeModel = M("Stock");
+        $stocks = $StockCodeModel->order("id ASC")->select();
+        foreach($stocks as $stock){
+            var_dump($stock);
+            QueueService::getInstance()->push(QUEUE_STOCK_ANALYSE,$stock);
+        }
+    }
+
     private function recordValidStock($stockCode){
         $url = "http://hq.sinajs.cn/list={$stockCode}";
         $stockInfo = mb_convert_encoding(file_get_contents($url),"UTF-8", "GB2312");//iconv("gb2312","utf8",file_get_contents($url));
@@ -150,4 +160,5 @@ class StockController extends CrontabController {
         $StockModel = M("Stock");
         return $StockModel->where("id < $id")->order("id DESC")->find();
     }
+
 }
