@@ -12,6 +12,7 @@ use Common\Library\Com\SRedis\RedisClient;
 class QueueService extends Service {
 
     static $_instance;
+    static $_handler;
     /**
      * 取得队列类实例
      * @static
@@ -33,7 +34,10 @@ class QueueService extends Service {
         if(self::$_instance){
             return self::$_instance;
         }
-        return self::$_instance = new RedisClient($config);
+        if(!self::$_handler){
+            self::$_handler = new RedisClient($config);
+        }
+        return self::$_instance = new QueueService();
     }
     public function __construct($config = array()){
         self::getInstance($config);
@@ -46,7 +50,8 @@ class QueueService extends Service {
      * @param bool $right 是否从右边开始入
      */
     public function push($key, $value ,$right = true) {
-        return self::$_instance->push($key, json_encode($value) ,$right);
+        $value = json_encode($value);
+        return self::$_handler->push($key, $value ,$right);
     }
 
     /**
@@ -55,7 +60,8 @@ class QueueService extends Service {
      * @param bool $left 是否从左边开始出数据
      */
     public function pop($key , $left = true) {
-        return json_decode(self::$_instance->pop($key , $left),true);
+        $value = self::$_handler->pop($key , $left);
+        return json_decode($value,true);
     }
 
     /**
@@ -63,6 +69,6 @@ class QueueService extends Service {
      * @param string $key KEY名称
      */
     public function len($key) {
-        return self::$_instance->len($key);
+        return self::$_handler->len($key);
     }
 }
