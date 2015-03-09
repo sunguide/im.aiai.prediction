@@ -14,7 +14,7 @@ class MonitorCrontabController extends CrontabController {
         while(true){
             $cmd = "php -q /home/wwwroot/prediction.aiai.im/index.php Command/MonitorCrontab/working  > /dev/null & ";
             exec($cmd);
-            usleep(1000000);
+            sleep(1); //usleep(1000000);
         }
     }
     public function working(){
