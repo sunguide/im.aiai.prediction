@@ -1,8 +1,8 @@
 <?php
 namespace Wechat\Controller;
 use Com\Wechat\WechatAuth;
-use Common\Common\Description\CategoryDescription;
-use Common\Common\Description\ThirdClientTypeDescription;
+use Common\Description\CategoryDescription;
+use Common\Description\ThirdClientTypeDescription;
 use Think\Controller;
 use Com\Wechat\Wechat;
 use Common\Service\SearchService;

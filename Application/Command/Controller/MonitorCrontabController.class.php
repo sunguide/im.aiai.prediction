@@ -31,22 +31,22 @@ class MonitorCrontabController extends CrontabController {
         }
     }
     private function execute($works){
-        $date = date("Ymd");
+//        $date = date("Ymd");
         foreach($works as $work){
+//            $logName = $date."_".strtolower(str_replace("/","_",trim($work))).".log";
+//            $cmd = "php -q /home/wwwroot/prediction.aiai.im/index.php $work  >> /home/wwwroot/prediction.aiai.im/Logs/$logName & ";
+//            exec($cmd);
+            $this->exec($work);
+        }
+    }
+    private function exec($work){
+        $date = date("Ymd");
+        $n = exec('ps -ef | grep "'.$work.'" | grep -vc grep');
+        if(intval($n) < 1){
             $logName = $date."_".strtolower(str_replace("/","_",trim($work))).".log";
             $cmd = "php -q /home/wwwroot/prediction.aiai.im/index.php $work  >> /home/wwwroot/prediction.aiai.im/Logs/$logName & ";
             exec($cmd);
         }
-    }
-    private function exec($cmd){
-        $date = date("Ymd");
-        $logName = $date."_".strtolower(str_replace("/","_",trim($cmd))).".log";
-        $c = 'cnt=`ps -ef | grep "'.$cmd.'" | grep -vc grep`
-            if [ $cnt -lt 2 ]; then
-            ps -ef | grep "'.$cmd.'" | grep -v grep|awk "{print $2}"|xargs kill -9
-            cd /home/wwwroot/prediction.aiai.im/ && php /home/wwwroot/prediction.aiai.im/g.php '.$cmd.'  >> /home/wwwroot/prediction.aiai.im/Logs/'.$logName.' &
-            fi';
-        exec($c);
     }
     private function millisecond(){
         return (floor(microtime(true) * 1000));

@@ -20,29 +20,24 @@ class QueueService extends Service {
      * @return mixed
      */
     public static function getInstance($config = array()) {
-
-        if(empty($config)){
-            $config = array (
-                'host'          => '127.0.0.1',
-                'port'          => 6379,
-                'timeout'       => false,
-                'persistent'    => false,
-                'auth'			=> false,
-                "prefix"        => "ai_"
-            );
-        }
         if(self::$_instance){
             return self::$_instance;
         }
         if(!self::$_handler){
+            if(empty($config)){
+                $config = array (
+                    'host'          => '127.0.0.1',
+                    'port'          => 6379,
+                    'timeout'       => false,
+                    'persistent'    => false,
+                    'auth'			=> false,
+                    "prefix"        => "ai_"
+                );
+            }
             self::$_handler = new RedisClient($config);
         }
         return self::$_instance = new QueueService();
     }
-    public function __construct($config = array()){
-        self::getInstance($config);
-    }
-
     /**
      * 数据入队列
      * @param string $key KEY名称
