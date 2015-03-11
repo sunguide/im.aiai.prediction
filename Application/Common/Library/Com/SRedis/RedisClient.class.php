@@ -138,7 +138,6 @@ class RedisClient
     public function push($key, $value ,$right = true) {
         self::connect(true);
         $key = $this->options['prefix'].$key;
-        $value = json_encode($value);
         return $right ? $this->handler->rPush($key, $value) : $this->handler->lPush($key, $value);
     }
 
@@ -151,7 +150,7 @@ class RedisClient
         self::connect(true);
         $key = $this->options['prefix'].$key;
         $val = $left ? $this->handler->lPop($key) : $this->handler->rPop($key);
-        return json_decode($val);
+        return $val;
     }
 
     /**
