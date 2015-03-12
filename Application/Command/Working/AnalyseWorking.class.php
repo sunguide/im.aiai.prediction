@@ -20,7 +20,7 @@ class AnalyseWorking extends QueueWorking {
     }
 
     private function comparePreTradeAmount($data){
-        $preStock = $this->getPreTradeStock($data['id']);
+        $preStock = $this->getPreTradeStock($data['id'],$data['code']);
         if($preStock){
             if($data['trade_number'] > ($preStock['trade_number'] * 1.5)){
                 $title = $data['name']."交易量大增50%以上:".$data['trade_number'];
@@ -44,8 +44,8 @@ class AnalyseWorking extends QueueWorking {
         return $StockModel->find($id);
     }
 
-    private function getPreTradeStock($id){
+    private function getPreTradeStock($id,$code){
         $StockModel = M("Stock");
-        return $StockModel->where("id < $id")->order("id DESC")->find();
+        return $StockModel->where("id < $id AND code = $code")->order("id DESC")->find();
     }
 }
