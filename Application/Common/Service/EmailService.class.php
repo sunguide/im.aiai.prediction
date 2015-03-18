@@ -73,7 +73,7 @@ class EmailService extends Service {
      * @param string $key KEY名称
      * @param bool $left 是否从左边开始出数据
      */
-    public function send($to, $name, $subject = '', $body = '', $attachment = null){
+    public function send($to, $name, $subject = '', $body = '',$from = null, $fromName = null, $attachment = null){
         $config = self::$_config;
 
         $mail = $this->getPHPMailer();
@@ -84,7 +84,7 @@ class EmailService extends Service {
 
         $replyName        = $config['REPLY_NAME']?$config['REPLY_NAME']:$config['FROM_NAME'];
 
-        $mail->AddReplyTo($replyEmail, $replyName);
+        $mail->AddReplyTo($from?$from:$replyEmail, $fromName?$fromName:$replyName);
 
         $mail->Subject    = $subject;
 

@@ -15,7 +15,8 @@ class AnalyseWorking extends QueueWorking {
 
     protected function working($data = array()){
         if($data){
-            $this->comparePreTradeAmount((array)$data);
+//            $this->comparePreTradeAmount((array)$data);
+            $this->comparePreFiveDayAverageTradeAmount((array)$data);
         }
     }
 
@@ -34,7 +35,32 @@ class AnalyseWorking extends QueueWorking {
             }
         }
     }
-
+    private function comparePreFiveDayAverageTradeAmount($data){
+        $fiveDayAverageTradeAmount = $this->getFiveDayAverageTradeAmount($data['id'],$data['code']);
+        if($data['trade_number'] > ($fiveDayAverageTradeAmount * 1.5)){
+            $rate = (floatval($data['trade_number']) / $fiveDayAverageTradeAmount);
+            $title = $data['name']."交易量超过五日均量50%以上:".$rate;
+            $emailNotice = array(
+                "to"        => "sunguide@qq.com",
+                "title"     => $title,
+                "content"   => $data['name']."交易量大增50%以上--Pre:".$rate,
+                "from_name"      => "股票分析",
+            );
+            $this->out($title);
+            QueueService::getInstance()->push(QUEUE_EMAIL,$emailNotice);
+        }
+    }
+    private function getFiveDayAverageTradeAmount($id,$code){
+        $StockModel = M("Stock");
+        $stocks = $StockModel->where("id < $id AND code = $code")->order("id DESC")->limit(5)->select();
+        $totalAmount = 0;
+        if($stocks){
+            foreach($stocks as $stock){
+                $totalAmount += $stock['trade_number'];
+            }
+        }
+        return $totalAmount ? $totalAmount/count($stocks) : $totalAmount;
+    }
     private function getStockFromCache($id){
         $stock = S($id);
         if($stock){

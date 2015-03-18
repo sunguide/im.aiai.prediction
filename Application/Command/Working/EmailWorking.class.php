@@ -15,10 +15,12 @@ class EmailWorking extends QueueWorking {
 
     protected function working($data = array()){
         $to = isset($data['to']) ? $data['to'] : "";
-        $name = isset($data['name']) ? $data['name'] : "";
+        $toName = isset($data['to_name']) ? $data['to_name'] : "";
         $title = isset($data['title']) ? $data['title'] : "";
         $content = isset($data['content']) ? $data['content'] : "";
-        EmailService::getInstance()->send($to,$name,$title,$content);
+        $from = isset($data['from']) ? $data['from'] : "";
+        $fromName = isset($data['from_name']) ? $data['from_name'] : "";
+        EmailService::getInstance()->send($to,$toName,$title,$content,$from,$fromName);
     }
 
 }
