@@ -12,6 +12,7 @@ class StockController extends Controller {
     }
     public function index(){
         $StockModel = M("Stock");
+
     }
 
 }
