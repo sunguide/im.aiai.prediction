@@ -39,11 +39,11 @@ class AnalyseWorking extends QueueWorking {
         $fiveDayAverageTradeAmount = $this->getFiveDayAverageTradeAmount($data['id'],$data['code']);
         if($data['trade_number'] > ($fiveDayAverageTradeAmount * 1.5)){
             $rate = (floatval($data['trade_number']) / $fiveDayAverageTradeAmount);
-            $title = $data['name']."交易量超过五日均量50%以上:".$rate;
+            $title = $data['name']."交易量超过五日均量50%以上";
             $emailNotice = array(
                 "to"        => "sunguide@qq.com",
                 "title"     => $title,
-                "content"   => $data['name']."交易量大增50%以上--Pre:".$rate,
+                "content"   => $data['name']."交易量较五日均量大增50%以上",
                 "from_name"      => "股票分析",
             );
             $this->out($title);

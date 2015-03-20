@@ -136,8 +136,8 @@ class StockController extends CrontabController {
             if($data['trade_number'] > ($preStock['trade_number'] * 1.5)){
                 $emailNotice = array(
                     "to"        => "sunguide@qq.com",
-                    "title"     => $data['name']."交易量大增50%以上:".$data['trade_number'],
-                    "content"   => $data['name']."交易量大增50%以上--Pre:".$preStock['trade_number']
+                    "title"     => $data['name']."交易量较五日均量大增50%以上",
+                    "content"   => $data['name']."交易量较五日均量大增50%以上"
                 );
                 QueueService::getInstance()->push("email_queue",$emailNotice);
             }

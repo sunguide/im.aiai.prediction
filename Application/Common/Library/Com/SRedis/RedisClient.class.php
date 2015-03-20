@@ -191,7 +191,15 @@ class RedisClient
         $key = $this->options['prefix'].$key;
         return $this->handler->lLen($key);
     }
+    public function subscribe($channels,$callback){
+        self::connect(true);
+        return $this->handler->subscribe($channels,$callback);
+    }
 
+    public function publish($channel,$message){
+        self::connect(true);
+        return $this->handler->publish($channel,$message);
+    }
     /**
      * 关闭长连接
      * @access public
