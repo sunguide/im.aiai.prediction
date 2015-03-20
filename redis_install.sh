@@ -2,6 +2,7 @@
 # create by sunguide
 # date 2015-03-15
 # desc install redis
+
 basedir=`pwd`
 homepath=/usr/local/redis
 [ -d $homepath ] && {
