@@ -1,5 +1,7 @@
 <?php
 namespace Home\Controller;
+use Common\Service\EmailService;
+use Common\Task\QueueTask;
 use Think\Controller;
 class WeeklyController extends BaseController {
 
@@ -96,6 +98,11 @@ class WeeklyController extends BaseController {
                     'status' => 1,
                 );
                 $result = $WeeklySubscribe->add($data);
+                //发送邮件通知订阅成功
+                if($result){
+                    $mailContent = file_get_contents("http://prediction.aiai.im/Home/Weekly/mail");
+                    QueueTask::sendEmail($email,'',"欢迎您订阅爱爱周刊",$mailContent);
+                }
             }
             if(!empty($result)){
                 $this->response("订阅成功");
