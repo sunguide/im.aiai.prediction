@@ -9,6 +9,63 @@
 function getCDNFile($filePath){
     return CDN_DOMAIN.$filePath;
 }
+
+function getStaticFile($filePath){
+    if(0 === strpos($filePath,"/")){
+        return $filePath;
+    }else{
+        return "/".$filePath;
+    }
+}
+function getAvatar($filePath){
+    if(0 === strpos($filePath,"/")){
+        return "/Upload/avatars".$filePath;
+    }else{
+        return "/Upload/avatars/".$filePath;
+    }
+}
+function getParamValue($data,$key,$default=""){
+    if(is_object($data)){
+        if(isset($data->$key)){
+            return $data->$key;
+        }
+    }else if(is_array($data)){
+        if(isset($data[$key])){
+            return $data[$key];
+        }
+    }
+    return $default;
+}
+function getUserNickname($userId = 0){
+    if(!$userId){
+        $nickname = session("user_nickname");
+        if($nickname){
+            return $nickname;
+        }
+    }
+    $User = M("User");
+    $userInfo = $User->find($userId);
+    return $userInfo ? $userInfo['nickname']:"";
+}
+function getUserAvatar($userId = 0, $default=""){
+    if(!$userId){
+        $avatar = session("user_avatar");
+        if($avatar){
+            return $avatar;
+        }
+    }
+    $User = M("User");
+    $userInfo = $User->find($userId);
+    return $userInfo ? getAvatar($userInfo['avatar']):$default;
+}
+function isLogin(){
+    return session("user_id")?true:false;
+}
+function getSocialTime($timestamp){
+    $date = new \Org\Util\Date();
+    $desc = $date->timeDiff($timestamp);
+    return $desc == "前"?"刚刚":$desc;
+}
 //符合互联网规则的验证邮箱的方法（尚且不支持中文域名）
 function is_email($email){
     $isValid = true;

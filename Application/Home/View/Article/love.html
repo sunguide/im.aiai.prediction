@@ -9,14 +9,29 @@
 
                 <h3 class="bs-docs-featurette-title">谈情说爱</h3>
                 <ul class="nav nav-tabs nav-tabs-zen mb10">
-                    <li class="active"><a href="/home/questions/newest">最新的</a></li>
-                    <li><a href="/home//questions/hottest">热门的</a></li>
-                    <li><a href="/home//questions/unanswered">未回答</a></li>
+                    <li class="active"><a href="{:U('article/love/newest')}">最新的</a></li>
+                    <li><a href="{:U('article/love/hottest')}">热门的</a></li>
                 </ul>
-                <hr class="half-rule">
+                <!--<hr class="half-rule">-->
+                <div class="row">
+                    <volist name="lists" id="list">
+                        <div style="height: 70px;margin:5px 15px;">
+                            <div class="user-avatar" style="float:left;">
+                               <a href="">
+                                   <img class="img-circle" style="max-width: 60px;" src="{:getUserAvatar($list['user_id'])}" />
+                               </a>
+                            </div>
+                            <div class="article" style="float: left;">
+                                <h4 class="title" style="margin: 5px 10px"><a href="/article/{$list['article_id']}" style="text-decoration: none;">{$list['title']}</a></h4>
+                                <div class="author" style="margin-left: 10px;">
+                                    <a href="">{$list['user_id']|getUserNickname}</a> <a href="">{$list['create_time']|getSocialTime}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </volist>
+                </div>
 
                 <div class="row">
-
                     <div class="col-sm-4">
                         <a href="http://job.bootcss.com/" target="_blank" title="Bootstrap Jobs" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Bootstrap Jobs'])" target="_blank">
                             <img src="http://static.bootcss.com/expo/img/9/10/aa0f5e47743eb3757b7cb06c29444.jpg" alt="Bootstrap Jobs" class="img-responsive">
@@ -42,15 +57,8 @@
                 <p class="lead">我们在“优站精选”里展示了许多精美的 Bootstrap 网站。</p>
                 <a href="http://expo.bootcss.com" class="btn btn-outline btn-lg">逛一逛“优站精选”</a>
             </div>
-            <div class="col-xs-4 col-md-3 aside">
-                <h2 class="bs-docs-featurette-title">爱爱网1</h2>
-                <p class="lead">全球数以百万计的网站都是基于 Bootstrap 构建的。你可以先参观一下我们提供的<a href="../getting-started/#examples">实例精选</a>或者看一看我们粉丝的网站吧。</p>
-
-                <ul class="nav nav-tabs nav-tabs-zen mb10">
-                    <li class="active"><a href="/questions/newest">最新的</a></li>
-                    <li><a href="/questions/hottest">热门的</a></li>
-                    <li><a href="/questions/unanswered">未回答</a></li>
-                </ul>
+            <div class="col-xs-4 col-md-3 aside-right">
+                <include file="Public/aside_right" />
             </div>
 
         </div>

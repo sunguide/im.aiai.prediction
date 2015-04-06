@@ -11,9 +11,9 @@ class TestController extends CrontabController {
 //            "title"     => "测试一下，孙贵德D大调",
 //            "content"   => "dddd"
 //        );
-//        if ( !extension_loaded('redis') ) {
-//            E(L('_NOT_SUPPERT_').':redis');
-//        }
+        if ( !extension_loaded('redis') ) {
+            E(L('_NOT_SUPPERT_').':redis');
+        }
 //        var_dump(QueueService::getInstance()->push(QUEUE_EMAIL,$emailNotice));
 
         QueueTask::sendEmail("sunguide@qq.com",'小妞',"欢d周刊","ddsd",'sun@guide.so',"牛b任务");

@@ -24,4 +24,7 @@ class QueueTask extends Task{
 
         QueueService::getInstance()->push(QUEUE_EMAIL,$emailNotice);
     }
+    public static function test(){
+        echo "test for".date("Y-m-d");
+    }
 } 

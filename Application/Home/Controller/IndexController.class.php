@@ -4,7 +4,7 @@ use Think\Controller;
 use PredictionIO\PredictionIOClient;
 class IndexController extends Controller {
     public function index(){
-       echo ($currentURL = ($_SERVER['HTTPS'] == "on" ? "https://" : "http://") . $_SERVER['HTTP_HOST'] .$_SERVER['REQUEST_URI']);
+//        echo ($currentURL = ($_SERVER['HTTPS'] == "on" ? "https://" : "http://") . $_SERVER['HTTP_HOST'] .$_SERVER['REQUEST_URI']);
         $this->display();
     }
     public function test(){

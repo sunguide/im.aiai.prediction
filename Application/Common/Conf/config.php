@@ -7,7 +7,7 @@
  */
     //定义回调URL通用的URL
     require_cache("../Commom/functions.php");
-    define('URL_CALLBACK', 'http://www.aiai.im/index.php?m=Account&a=callback&type=');
+    define('URL_CALLBACK', 'http://dev.aiai.im/auth/callback?debug=1&type=');
     define("APP_VERSION", "1.0.0");
     define("CDN_DOMAIN","http://aiaicdn.qiniudn.com");
     return array(
@@ -46,6 +46,7 @@
             'app.aiai.im'   => 'App',
             'admin.aiai.im' => 'Admin',
             'weekly.aiai.im' => 'Home/Weekly',
+            'dev.aiai.im' => 'Home',
             'pay.aiai.im' => 'Pay',
         ),
         'URL_MODEL'     => 2,

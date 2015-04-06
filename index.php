@@ -20,7 +20,7 @@ function err_handler($e){
 set_exception_handler("err_handler");
 
 // 开启调试模式 建议开发阶段开启 部署阶段注释或者设为false
-define('APP_DEBUG',false);
+define('APP_DEBUG',true);
 // 定义应用目录
 define('APP_PATH',__DIR__.'/Application/');//必须使用绝对路径
 // 引入composer

@@ -1,6 +1,5 @@
 <?php
 namespace Home\Controller;
-use Common\Service\EmailService;
 use Common\Task\QueueTask;
 use Think\Controller;
 class WeeklyController extends BaseController {
@@ -136,8 +135,12 @@ class WeeklyController extends BaseController {
         $this->response("取消订阅失败");
     }
     public function test(){
-        $mailContent = $this->fetch("mail");
-        $r = think_send_mail("sun@guide.so",'','文件标题',$mailContent);
-        dump($r);
+        $email = "sun@guide.so";
+        $mailContent = file_get_contents("http://prediction.aiai.im/Home/Weekly/mail");
+        \Common\Task\QueueTask::sendEmail($email,'',"欢迎您订阅爱爱周刊",$mailContent);
+//        $mailContent = $this->fetch("mail");
+//        $r = think_send_mail("sun@guide.so",'','文件标题',$mailContent);
+//        dump($r);
+        exit("ddd");
     }
 }

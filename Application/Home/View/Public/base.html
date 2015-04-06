@@ -18,6 +18,7 @@
 
     <link href="../assets/css/patch.css" rel="stylesheet">
     <link href="__PUBLIC__/home/css/app.css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/diy.css" rel="stylesheet">
     <!-- Documentation extras -->
     <link href="__PUBLIC__/home/css/docs.min.css" rel="stylesheet">
     <!--[if lt IE 9]><script src="../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -40,7 +41,7 @@
 
 <block name="menu">
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background: #DF1E54;border-color: #D81919;">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -50,19 +51,37 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">爱爱</a>
+                <a class="navbar-brand" href="/">爱爱</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="header-menu">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <a href="/article/love">谈情说爱</a>
+                    </li>
+                    <li>
+                        <a href="/skill">房事秘笈</a>
+                    </li>
+                    <li>
+                        <a href="/position">性爱姿势</a>
+                    </li>
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#">About</a>
+                        <a href="/about">FAQ</a>
                     </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
+                    <li class="login user-info dropdown">
+                        <if condition="isLogin()">
+                            <a href="#" title="{:getUserNickname()}"><img class="icon-login img-circle" title="{:getUserNickname()}" src="{:getUserAvatar(0,'/Public/images/iconfont-login.png')}"></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">{:getUserNickname()}</a></li>
+                                <li><a href="/auth/logout">退出</a></li>
+                                <!--<li class="divider"></li>-->
+                                <!--<li><a href="#">个人资料</a></li>-->
+                            </ul>
+                            <else />
+                            <a href="/auth/login/type/sina" title="登录"><img class="icon-login img-circle" title="" src="{:getStaticFile('/Public/images/iconfont-login.png')}"></a>
+                        </if>
                     </li>
                 </ul>
             </div>
@@ -71,52 +90,52 @@
         <!-- /.container -->
     </nav>
 </block>
+<div id="main-container">
+    <block name="main">
 
-<block name="main">
+        <div class="container">
+            <h2 class="bs-docs-featurette-title">基于 Bootstrap 构建的网站</h2>
+            <p class="lead">全球数以百万计的网站都是基于 Bootstrap 构建的。你可以先参观一下我们提供的<a href="../getting-started/#examples">实例精选</a>或者看一看我们粉丝的网站吧。</p>
 
-    <div class="container">
-        <h2 class="bs-docs-featurette-title">基于 Bootstrap 构建的网站</h2>
-        <p class="lead">全球数以百万计的网站都是基于 Bootstrap 构建的。你可以先参观一下我们提供的<a href="../getting-started/#examples">实例精选</a>或者看一看我们粉丝的网站吧。</p>
+            <hr class="half-rule">
 
-        <hr class="half-rule">
+            <div class="row bs-docs-featured-sites">
 
-        <div class="row bs-docs-featured-sites">
+                <div class="col-sm-4">
+                    <a href="http://job.bootcss.com/" target="_blank" title="Bootstrap Jobs" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Bootstrap Jobs'])" target="_blank">
+                        <img src="http://static.bootcss.com/expo/img/9/10/aa0f5e47743eb3757b7cb06c29444.jpg" alt="Bootstrap Jobs" class="img-responsive">
+                    </a>
+                </div>
 
-            <div class="col-sm-4">
-                <a href="http://job.bootcss.com/" target="_blank" title="Bootstrap Jobs" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Bootstrap Jobs'])" target="_blank">
-                    <img src="http://static.bootcss.com/expo/img/9/10/aa0f5e47743eb3757b7cb06c29444.jpg" alt="Bootstrap Jobs" class="img-responsive">
-                </a>
+                <div class="col-sm-4">
+                    <a href="http://www.ghostchina.com/" target="_blank" title="Ghost中国" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Ghost中国'])" target="_blank">
+                        <img src="http://static.bootcss.com/expo/img/7/b5/f9c2f01fad1f23574156e0577a06c.jpg" alt="Ghost中国" class="img-responsive">
+                    </a>
+                </div>
+
+                <div class="col-sm-4">
+                    <a href="http://expo.bootcss.com/" target="_blank" title="Timely" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Timely'])" target="_blank">
+                        <img src="http://static.bootcss.com/expo/img/8/6e/4a5e1cc71a408729fb2cc3f476afb.jpg" alt="Timely" class="img-responsive">
+                    </a>
+                </div>
+
             </div>
 
-            <div class="col-sm-4">
-                <a href="http://www.ghostchina.com/" target="_blank" title="Ghost中国" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Ghost中国'])" target="_blank">
-                    <img src="http://static.bootcss.com/expo/img/7/b5/f9c2f01fad1f23574156e0577a06c.jpg" alt="Ghost中国" class="img-responsive">
-                </a>
-            </div>
+            <hr class="half-rule">
 
-            <div class="col-sm-4">
-                <a href="http://expo.bootcss.com/" target="_blank" title="Timely" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Timely'])" target="_blank">
-                    <img src="http://static.bootcss.com/expo/img/8/6e/4a5e1cc71a408729fb2cc3f476afb.jpg" alt="Timely" class="img-responsive">
-                </a>
-            </div>
-
+            <p class="lead">我们在“优站精选”里展示了许多精美的 Bootstrap 网站。</p>
+            <a href="http://expo.bootcss.com" class="btn btn-outline btn-lg">逛一逛“优站精选”</a>
         </div>
 
-        <hr class="half-rule">
-
-        <p class="lead">我们在“优站精选”里展示了许多精美的 Bootstrap 网站。</p>
-        <a href="http://expo.bootcss.com" class="btn btn-outline btn-lg">逛一逛“优站精选”</a>
-    </div>
-
-</block>
-
+    </block>
+</div>
 <block name="footer">
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="safe"><b class="icon-safe"></b>正在为您提供银行级别的安全保障</div>
-                    <p class="copyright text-muted small">Copyright &copy; Your Company 2014. All Rights Reserved</p>
+                <div class="col-lg-12" style="text-align: center;">
+                    <div class="safe"><b class="icon-safe"></b>正在为您提供银行级别的隐私安全保障</div>
+                    <p class="copyright text-muted small">Copyright &copy; Aiai Inc. 2014. All Rights Reserved</p>
                 </div>
             </div>
         </div>
@@ -136,7 +155,7 @@
 
 
 <script src="../assets/js/docs.min.js"></script>
-
+<script src="{:getStaticFile('/Public/home/js/app.js')}"></script>
 
 
 

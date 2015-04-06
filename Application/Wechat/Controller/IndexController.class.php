@@ -195,6 +195,7 @@ class IndexController extends Controller {
             $UserThird->add(array(
                 "openid"    =>  $openID,
                 "user_id"   =>  $uid,
+                "client_type" => "wechat"
             ));
         }
     }

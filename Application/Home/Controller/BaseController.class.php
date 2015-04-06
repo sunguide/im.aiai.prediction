@@ -10,7 +10,7 @@ namespace Home\Controller;
 
 
 use Think\Controller;
-
+use Common\Manager\UserManager;
 class BaseController extends Controller{
     protected $_check_auth = false;//是否需要检查认证
     protected $_error = array();
@@ -142,5 +142,30 @@ class BaseController extends Controller{
             // 确保FastCGI模式下正常
             header('Status:'.$code.' '.$_status[$code]);
         }
+    }
+    public function setUser($userId){
+        $userInfo = UserManager::getInfo($userId);
+        if($userInfo){
+            session("user_id",$userId);
+            session("user_nickname",$userInfo['nickname']);
+            session("user_avatar",$userInfo['avatar']);
+            return true;
+        }
+        return false;
+    }
+    public function unsetUser(){
+        session("user_id",null);
+        session("user_nickname",null);
+        session("user_avatar",null);
+        return true;
+    }
+    public function getUserId(){
+        return session("user_id");
+    }
+    public function getUserAvatar(){
+        return session("user_avatar");
+    }
+    public function getUserNickname(){
+        return session("user_nickname");
     }
 } 
