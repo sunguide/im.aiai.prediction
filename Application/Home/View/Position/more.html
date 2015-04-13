@@ -1,0 +1,21 @@
+<volist name="lists" id="list">
+    <div class="top_section">
+        <a href="/position/{$list['id']}" class="img" target="_blank"><img src="{$list['position_image']}" style="height: 220px; margin-top: 50px;" alt=""></a>
+        <div class="user_info clearfix">
+            <a href="/user/{$list['user_id']}" class="avatar" target="_blank"><img src="{:getStaticFile('/Public/images/iconfont-official.png')}" alt=""></a>
+            <div class="desc">
+                <p class="title_txt">
+                    <a href="/user/{$list['user_id']}" target="_blank">
+                        <img style="height: 18px;margin-top: 2px;" src="{:getStaticFile('/Public/images/iconfont-tuijian.png')}" /><span class="icon_work">{$list['position_title']}</span>
+                    </a>
+                </p>
+            </div>
+            <span class="icon_arrow"></span>
+        </div>
+        <p class="user_say"><a target="_blank" href="/position/{$list['id']}">{$list['article_content']}</a></p>
+        <div class="item_data clearfix">
+            <a class="view_num" href="/top/share/note?tid=16agu" target="_blank">2410次浏览</a>
+            <a class="like_num" href="/top/share/note?tid=16agu" target="_blank">31个赞</a>
+        </div>
+    </div>
+</volist>

@@ -24,6 +24,9 @@ function getAvatar($filePath){
         return "/Upload/avatars/".$filePath;
     }
 }
+function getDefaultAvatar(){
+    return getStaticFile('Public/images/iconfont-default-avatar.png');
+}
 function getParamValue($data,$key,$default=""){
     if(is_object($data)){
         if(isset($data->$key)){
@@ -47,23 +50,34 @@ function getUserNickname($userId = 0){
     $userInfo = $User->find($userId);
     return $userInfo ? $userInfo['nickname']:"";
 }
+
 function getUserAvatar($userId = 0, $default=""){
+    !$default && $default = getDefaultAvatar();
     if(!$userId){
-        $avatar = session("user_avatar");
-        if($avatar){
-            return $avatar;
-        }
+        return $default;
     }
     $User = M("User");
     $userInfo = $User->find($userId);
     return $userInfo ? getAvatar($userInfo['avatar']):$default;
 }
+
+function getCurrentUserAvatar(){
+    $avatar = session("user_avatar");
+    return $avatar?:getDefaultAvatar();
+}
+
 function isLogin(){
     return session("user_id")?true:false;
 }
 function getSocialTime($timestamp){
     $date = new \Org\Util\Date();
     $desc = $date->timeDiff($timestamp);
+    if(strpos($desc,"年")>0){
+        $year = intval($desc);
+        if($year > 5){
+            return "很久以前";
+        }
+    }
     return $desc == "前"?"刚刚":$desc;
 }
 //符合互联网规则的验证邮箱的方法（尚且不支持中文域名）
@@ -174,4 +188,74 @@ function think_send_mail($to, $name, $subject = '', $body = '', $attachment = nu
 
     return  $mail->Send() ? true : $mail->ErrorInfo;
 
+}
+
+/**
+ * 把返回的数据集转换成Tree
+ * @param array $list 要转换的数据集
+ * @param string $pid parent标记字段
+ * @param string $child 子标记
+ * @return array
+ * @author 孙贵德 <sunguide@qq.com>
+ */
+function listToTree($list, $pk = 'id', $pid = 'pid', $child = '_child', $root = 0)
+{
+    // 创建Tree
+    $tree = array();
+    if (is_array($list)) {
+        // 创建基于主键的数组引用
+        $refer = array();
+        foreach ($list as $key => $data) {
+            $refer[$data[$pk]] =& $list[$key];
+        }
+        foreach ($list as $key => $data) {
+            // 判断是否存在parent
+            $parentId = $data[$pid];
+            if ($root == $parentId) {
+                $tree[] =& $list[$key];
+            } else {
+                if (isset($refer[$parentId])) {
+                    $parent           =& $refer[$parentId];
+                    $parent[$child][] =& $list[$key];
+                }
+            }
+        }
+    }
+
+    return $tree;
+}
+
+function listForObjectToArray($obj, $params)
+{
+    $dataArray = array();
+    foreach ($obj as $key => $value) {
+        foreach ($params as $k => $v) {
+            $dataArray[$key][$v] = $value->$v;
+        }
+    }
+
+    return $dataArray;
+}
+
+function cnTruncate($string, $strlen = 20, $etc = '...', $charset = 'utf-8')
+{
+    $slen = mb_strlen($string, $charset);
+    if ($slen > $strlen + 2) {
+        $tstr    = mb_substr($string, 0, $strlen, $charset);
+        $matches = array();
+        $mcount  = preg_match_all("/[\x{4e00}-\x{9fa5}]/u", $tstr, $matches);
+        unset($matches);
+        $offset = ($strlen - $mcount) * 0.35;
+        return preg_replace('/\&\w*$/', '', mb_substr($string, 0, $strlen + $offset, $charset)) . $etc;
+    } else {
+        return $string;
+    }
+}
+//检查是否是中文
+function isCnCharacter($str)
+{
+    if (preg_match('/[^\x00-\x7F]/i', $str)) {
+        return true;
+    }
+    return false;
 }

@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="zh-cn" xmlns:wb="http://open.weibo.com/wb">
 <head>
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -10,7 +9,7 @@
     <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="author" content="爱爱">
-    <title></title>
+    <title>{$title}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -36,6 +35,7 @@
         var _hmt = _hmt || [];
     </script>
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=3598307079" type="text/javascript" charset="utf-8"></script>
 </head>
 <body class="bs-docs-home">
 
@@ -65,9 +65,6 @@
                     <li>
                         <a href="/position">性爱姿势</a>
                     </li>
-                    <li>
-                        <a href="/question">授道解惑</a>
-                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -96,38 +93,47 @@
 <div id="main-container">
     <block name="main">
 
-        <div class="container">
-            <h2 class="bs-docs-featurette-title">基于 Bootstrap 构建的网站</h2>
-            <p class="lead">全球数以百万计的网站都是基于 Bootstrap 构建的。你可以先参观一下我们提供的<a href="../getting-started/#examples">实例精选</a>或者看一看我们粉丝的网站吧。</p>
-
-            <hr class="half-rule">
-
-            <div class="row bs-docs-featured-sites">
-
+        <div class="container" style="">
+            <div class="row">
+                <div class="col-sm-4"></div>
                 <div class="col-sm-4">
-                    <a href="http://job.bootcss.com/" target="_blank" title="Bootstrap Jobs" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Bootstrap Jobs'])" target="_blank">
-                        <img src="http://static.bootcss.com/expo/img/9/10/aa0f5e47743eb3757b7cb06c29444.jpg" alt="Bootstrap Jobs" class="img-responsive">
-                    </a>
-                </div>
+                    <div id="login-wrap" class="text-center">
+                        <h3>注册</h3>
+                        <form role="form" action="/services/security/username_password?accept_terms=true" method="post"
+                              id="signup-form" autocomplete="on" validate="">
+                            <wb:login-button type="3,2" onlogin="login" onlogout="logout">登录按钮</wb:login-button>
 
-                <div class="col-sm-4">
-                    <a href="http://www.ghostchina.com/" target="_blank" title="Ghost中国" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Ghost中国'])" target="_blank">
-                        <img src="http://static.bootcss.com/expo/img/7/b5/f9c2f01fad1f23574156e0577a06c.jpg" alt="Ghost中国" class="img-responsive">
-                    </a>
-                </div>
+                            <a class="btn btn-lg btn-secondary btn-block" track="sign up page google"
+                               href="https://accounts.google.com/o/oauth2/auth?client_id=726336950247-p6172q2aojfuntnp8e0rocg45c19ss4b.apps.googleusercontent.com&amp;response_type=code&amp;scope=profile+email&amp;redirect_uri=https%3A//elasticbox.com/services/security/google_callback%3Faccept_terms%3Dtrue&amp;approval_prompt=auto"><i
+                                    class="sso-google"></i>Sign Up with Google</a>
+                            <span class="divider"><strong>or</strong></span>
 
-                <div class="col-sm-4">
-                    <a href="http://expo.bootcss.com/" target="_blank" title="Timely" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Timely'])" target="_blank">
-                        <img src="http://static.bootcss.com/expo/img/8/6e/4a5e1cc71a408729fb2cc3f476afb.jpg" alt="Timely" class="img-responsive">
-                    </a>
-                </div>
+                            <p id="signup-with-email-error" class="alert alert-danger" style="display:none">Email already
+                                exists.</p>
 
+                            <div class="form-group">
+                                <input name="name" type="name" track="sign up page name" placeholder="Your Name"
+                                       class="focus form-control input-lg" id="signup-name" required="">
+                            </div>
+                            <div class="form-group">
+                                <input name="email" type="email" track="sign up page email" placeholder="Email Address"
+                                       class="form-control input-lg" id="signup-email" required="">
+                            </div>
+                            <div class="form-group">
+                                <input name="password" type="password" track="sign up page password" placeholder="Password"
+                                       class="form-control input-lg" id="signup-password" required="">
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block sign-up-btn" track="sign up page email"
+                                    id="signup-with-email">注册
+                            </button>
+                        </form>
+                        <p class="padding-1x text-muted text-center">Already have an account? <a id="login-link"
+                                                                                                 href="..//login">Login</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-4"></div>
             </div>
-
-            <hr class="half-rule">
-
-            <p class="lead">我们在“优站精选”里展示了许多精美的 Bootstrap 网站。</p>
-            <a href="http://expo.bootcss.com" class="btn btn-outline btn-lg">逛一逛“优站精选”</a>
         </div>
 
     </block>

@@ -1,0 +1,28 @@
+<extend name="Public/base" />
+<block name="title"><title>{$title}</title></block>
+
+<block name="left"></block>
+<block name="main">
+    <div class="container">
+        <div class="row" style="margin-top: 30px;">
+            <div class="col-xs-12 col-md-9 main">
+                <h3 class="">{$item['title']}</h3>
+                <div class="article-content" style="min-height: 400px;">
+                    {$item['content']}
+                </div>
+            </div>
+            <div class="col-xs-4 col-md-3 aside">
+                <h2 class="bs-docs-featurette-title">爱爱网1</h2>
+                <p class="lead">全球数以百万计的网站都是基于 Bootstrap 构建的。你可以先参观一下我们提供的<a href="../getting-started/#examples">实例精选</a>或者看一看我们粉丝的网站吧。</p>
+
+                <ul class="nav nav-tabs nav-tabs-zen mb10">
+                    <li class="active"><a href="/questions/newest">最新的</a></li>
+                    <li><a href="/questions/hottest">热门的</a></li>
+                    <li><a href="/questions/unanswered">未回答</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+</block>

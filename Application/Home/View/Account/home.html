@@ -1,0 +1,37 @@
+<extend name="Public/base" />
+<block name="title"><title>{$title}</title></block>
+<block name="menu">
+    <style>
+        body{
+            background: #fff;
+        }
+        #main-container{
+            margin-top: 0;
+            padding-top: 20px;
+            min-height: 500px;
+        }
+    </style>
+</block>
+<block name="left"></block>
+<block name="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-12 main">
+                <section class="header">
+                    <a href="/" alt="返回主页"><img src="{:getStaticFile('Public/images/iconfont-zhuye.png')}" width="28px;"></a>
+                </section>
+                <section class="profile text-center">
+                    <a class="user-image-link" href="/user/{$user['id']}">
+                        <img alt="" class="avatar img-circle" height="120" src="{$user['avatar']}" width="120" />
+                    </a>
+                    <h2 class="user-name">{$user['nickname']|default=$user['username']}</h2>
+                    <p class="user-bio">{$user['signature']|default=''}</p>
+                    <span><strong>关注:</strong>121</span>
+                    <span style="margin-left: 20px;"><strong>粉丝:</strong>3232</span>
+                    <hr class="half-rule">
+                </section>
+            </div>
+        </div>
+
+    </div>
+</block>

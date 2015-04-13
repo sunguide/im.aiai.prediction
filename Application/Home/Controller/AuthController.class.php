@@ -29,13 +29,21 @@ class AuthController extends BaseController {
         redirect($sns->getRequestCodeURL());
     }
     //授权回调地址
-    public function callback($type = null, $code = null){
-        (empty($type) || empty($code)) && $this->error('参数错误');
+    public function callback($type = null, $code = null, $error = null){
+        (empty($type) || (empty($code) && empty($error))) && $this->error('参数错误');
         $sns  = \Org\ThinkSDK\ThinkOauth::getInstance($type);
         //腾讯微博需传递的额外参数
         $extend = null;
         if($type == 'tencent'){
             $extend = array('openid' => $this->_get('openid'), 'openkey' => $this->_get('openkey'));
+        }
+        if($error){
+            $errorInfo = array(
+                "error" => $error,
+                "error_description" => I("error_description"),
+            );
+            $this->error("你取消了授权");
+//            $this->redirect($this->getReferer());
         }
         //请妥善保管这里获取到的Token信息，方便以后API调用
         //调用方法，实例化SDK对象的时候直接作为构造函数的第二个参数传入
@@ -69,6 +77,7 @@ class AuthController extends BaseController {
                         "user_id" => $userId,
                         "openid"  => $token['openid'],
                         "nickname" => $user_info['nick'],
+                        "client_type" => $user_info['type']
                     );
                     $UserThird->add($userThirdInfoData);
                 }

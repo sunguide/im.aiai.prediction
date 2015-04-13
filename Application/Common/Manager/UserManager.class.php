@@ -62,4 +62,18 @@ class UserManager {
         $User = M("User");
         return $User->find($userId);
     }
+    //获取用户社交信息
+    public static function getSocialInfo($userId){
+        $data = array(
+            "follow" => self::getFollowAmount($userId)
+        );
+        return $data;
+    }
+    public static function getFollowAmount($userId){
+        $info = UserBehaviorManager::getBehaviorStat(Description\UserBehaviorDescription::GROUP_USER,$userId,Description\UserBehaviorDescription::ACTION_FOLLOW);
+        if($info){
+            return $info['amount'];
+        }
+        return 0;
+    }
 }

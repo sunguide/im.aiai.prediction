@@ -5,63 +5,51 @@
 <block name="main">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-md-9 main">
+            <div class="col-xs-12 col-md-12 main" style="min-width: 960px;background:#f2f2f2;">
+                <div class="top_wall clearfix">
+                    <div class="top_sections clearfix">
 
-                <h3 class="bs-docs-featurette-title">谈情说爱</h3>
-                <ul class="nav nav-tabs nav-tabs-zen mb10">
-                    <li class="active"><a href="{:U('article/love/newest')}">最新的</a></li>
-                    <li><a href="{:U('article/love/hottest')}">热门的</a></li>
-                </ul>
-                <!--<hr class="half-rule">-->
-                <div class="row">
-                    <volist name="lists" id="list">
-                        <div style="height: 70px;margin:5px 15px;">
-                            <div class="user-avatar" style="float:left;">
-                               <a href="">
-                                   <img class="img-circle" style="max-width: 60px;" src="{:getUserAvatar($list['user_id'])}" />
-                               </a>
-                            </div>
-                            <div class="article" style="float: left;">
-                                <h4 class="title" style="margin: 5px 10px"><a href="/article/{$list['article_id']}" style="text-decoration: none;">{$list['title']}</a></h4>
-                                <div class="author" style="margin-left: 10px;">
-                                    <a href="">{$list['user_id']|getUserNickname}</a> <a href="">{$list['create_time']|getSocialTime}</a>
+                        <volist name="lists" id="list">
+                            <div class="top_section">
+                                <a href="/position/{$list['id']}" class="img" target="_blank"><img src="{$list['position_image']}" style="height: 220px; margin-top: 50px;" alt=""></a>
+                                <div class="user_info clearfix">
+                                    <a href="/user/{$list['user_id']}" class="avatar" target="_blank"><img src="{:getStaticFile('/Public/images/iconfont-official.png')}" alt=""></a>
+                                    <div class="desc">
+                                        <p class="title_txt">
+                                            <a href="/user/{$list['user_id']}" target="_blank">
+                                                <img style="height: 18px;margin-top: 2px;" src="{:getStaticFile('/Public/images/iconfont-tuijian.png')}" /><span class="icon_work">{$list['position_title']}</span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <span class="icon_arrow"></span>
+                                </div>
+                                <p class="user_say"><a target="_blank" href="/position/{$list['id']}">{$list['article_content']}</a></p>
+                                <div class="item_data clearfix">
+                                    <a class="view_num" href="/top/share/note?tid=16agu" target="_blank">2410次浏览</a>
+                                    <a class="like_num" href="/top/share/note?tid=16agu" target="_blank">31个赞</a>
                                 </div>
                             </div>
-                        </div>
-                    </volist>
+                        </volist>
+
+                    </div>
+                    <div class="top_wall_more" data-page="1">加载更多 <img src="http://s8.mogucdn.com/pic/140820/1blhwf_ieygkmtcmm3gmoddmiytambqhayde_16x16.gif" alt="Loading" width="16" height="16"></div>
                 </div>
-
-                <div class="row">
-                    <div class="col-sm-4">
-                        <a href="http://job.bootcss.com/" target="_blank" title="Bootstrap Jobs" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Bootstrap Jobs'])" target="_blank">
-                            <img src="http://static.bootcss.com/expo/img/9/10/aa0f5e47743eb3757b7cb06c29444.jpg" alt="Bootstrap Jobs" class="img-responsive">
-                        </a>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <a href="http://www.ghostchina.com/" target="_blank" title="Ghost中国" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Ghost中国'])" target="_blank">
-                            <img src="http://static.bootcss.com/expo/img/7/b5/f9c2f01fad1f23574156e0577a06c.jpg" alt="Ghost中国" class="img-responsive">
-                        </a>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <a href="http://expo.bootcss.com/" target="_blank" title="Timely" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Timely'])" target="_blank">
-                            <img src="http://static.bootcss.com/expo/img/8/6e/4a5e1cc71a408729fb2cc3f476afb.jpg" alt="Timely" class="img-responsive">
-                        </a>
-                    </div>
-
-                </div>
-
-                <hr class="half-rule">
-
-                <p class="lead">我们在“优站精选”里展示了许多精美的 Bootstrap 网站。</p>
-                <a href="http://expo.bootcss.com" class="btn btn-outline btn-lg">逛一逛“优站精选”</a>
-            </div>
-            <div class="col-xs-4 col-md-3 aside-right">
-                <include file="Public/aside_right" />
-            </div>
+            <!--<div class="col-xs-4 col-md-3 aside-right">-->
+                <!--<include file="Public/aside_right" />-->
+            <!--</div>-->
 
         </div>
 
     </div>
+    <script>
+        $(function(){
+            $(".top_wall_more").click(function(){
+                var page = $(this).attr("data-page");
+                $.get("/position/more?p="+page,function(content){
+                    $(".top_sections").append(content);
+                    $(this).attr("data-page",parseInt(page)+1);
+                });
+            });
+        })
+    </script>
 </block>

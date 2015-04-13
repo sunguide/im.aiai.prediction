@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="zh-cn" xmlns:wb="http://open.weibo.com/wb">
 <head>
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -10,7 +9,7 @@
     <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="author" content="爱爱">
-    <title></title>
+    <title>{$title}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -36,6 +35,7 @@
         var _hmt = _hmt || [];
     </script>
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=3598307079" type="text/javascript" charset="utf-8"></script>
 </head>
 <body class="bs-docs-home">
 
@@ -65,9 +65,6 @@
                     <li>
                         <a href="/position">性爱姿势</a>
                     </li>
-                    <li>
-                        <a href="/question">授道解惑</a>
-                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -96,38 +93,27 @@
 <div id="main-container">
     <block name="main">
 
-        <div class="container">
-            <h2 class="bs-docs-featurette-title">基于 Bootstrap 构建的网站</h2>
-            <p class="lead">全球数以百万计的网站都是基于 Bootstrap 构建的。你可以先参观一下我们提供的<a href="../getting-started/#examples">实例精选</a>或者看一看我们粉丝的网站吧。</p>
-
-            <hr class="half-rule">
-
-            <div class="row bs-docs-featured-sites">
-
+        <div class="container" style="padding: 150px;">
+            <div class="row">
+                <div class="col-sm-4"></div>
                 <div class="col-sm-4">
-                    <a href="http://job.bootcss.com/" target="_blank" title="Bootstrap Jobs" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Bootstrap Jobs'])" target="_blank">
-                        <img src="http://static.bootcss.com/expo/img/9/10/aa0f5e47743eb3757b7cb06c29444.jpg" alt="Bootstrap Jobs" class="img-responsive">
-                    </a>
+                    <div class="text-center">
+
+                        <?php if(isset($message)) {?>
+                        <h2>操作成功</h2>
+                        <p class="success"><?php echo($message); ?></p>
+                        <?php }else{?>
+                        <h2>出错了</h2>
+                        <p class="error"><?php echo($error); ?></p>
+                        <?php }?>
+                        <p class="jump">
+                            页面自动 <a id="href" href="<?php echo($jumpUrl); ?>">跳转</a> 等待时间： <b id="wait"><?php echo($waitSecond); ?></b>
+                        </p>
+                    </div>
                 </div>
 
-                <div class="col-sm-4">
-                    <a href="http://www.ghostchina.com/" target="_blank" title="Ghost中国" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Ghost中国'])" target="_blank">
-                        <img src="http://static.bootcss.com/expo/img/7/b5/f9c2f01fad1f23574156e0577a06c.jpg" alt="Ghost中国" class="img-responsive">
-                    </a>
-                </div>
-
-                <div class="col-sm-4">
-                    <a href="http://expo.bootcss.com/" target="_blank" title="Timely" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Timely'])" target="_blank">
-                        <img src="http://static.bootcss.com/expo/img/8/6e/4a5e1cc71a408729fb2cc3f476afb.jpg" alt="Timely" class="img-responsive">
-                    </a>
-                </div>
-
+                <div class="col-sm-4"></div>
             </div>
-
-            <hr class="half-rule">
-
-            <p class="lead">我们在“优站精选”里展示了许多精美的 Bootstrap 网站。</p>
-            <a href="http://expo.bootcss.com" class="btn btn-outline btn-lg">逛一逛“优站精选”</a>
         </div>
 
     </block>
@@ -170,7 +156,16 @@
 <!-- Analytics
 ================================================== -->
 <script type="text/javascript">
-
+    (function(){
+        var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+        var interval = setInterval(function(){
+            var time = --wait.innerHTML;
+            if(time <= 0) {
+                location.href = href;
+                clearInterval(interval);
+            };
+        }, 1000);
+    })();
 </script>
 
 </body>

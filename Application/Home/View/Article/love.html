@@ -5,7 +5,7 @@
 <block name="main">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-md-9 main">
+            <div class="col-xs-12 col-md-8 main">
 
                 <h3 class="bs-docs-featurette-title">谈情说爱</h3>
                 <ul class="nav nav-tabs nav-tabs-zen mb10">
@@ -17,7 +17,7 @@
                     <volist name="lists" id="list">
                         <div style="height: 70px;margin:5px 15px;">
                             <div class="user-avatar" style="float:left;">
-                               <a href="">
+                               <a href="/user/{$list['user_id']}">
                                    <img class="img-circle" style="max-width: 60px;" src="{:getUserAvatar($list['user_id'])}" />
                                </a>
                             </div>
@@ -57,6 +57,7 @@
                 <p class="lead">我们在“优站精选”里展示了许多精美的 Bootstrap 网站。</p>
                 <a href="http://expo.bootcss.com" class="btn btn-outline btn-lg">逛一逛“优站精选”</a>
             </div>
+            <div class="col-xs-12 col-md-1"></div>
             <div class="col-xs-4 col-md-3 aside-right">
                 <include file="Public/aside_right" />
             </div>

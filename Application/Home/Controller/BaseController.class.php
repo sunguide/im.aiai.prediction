@@ -41,6 +41,10 @@ class BaseController extends Controller{
             exit;
         }
     }
+
+    protected function getReferer(){
+        return $_SERVER["HTTP_REFERER"];
+    }
     /**
      * 重写 输出返回数据
      * @access protected

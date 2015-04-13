@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:wb="http://open.weibo.com/wb">
+<head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bootstrap - 简洁、直观、强悍、移动设备优先的前端开发框架，让web开发更迅速、简单。">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="author" content="爱爱">
+    <title>{$title}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../assets/css/patch.css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/app.css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/diy.css" rel="stylesheet">
+    <!-- Documentation extras -->
+    <link href="__PUBLIC__/home/css/docs.min.css" rel="stylesheet">
+    <!--[if lt IE 9]><script src="../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="/favicon.ico">
+    <script>
+        var _hmt = _hmt || [];
+    </script>
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=3598307079" type="text/javascript" charset="utf-8"></script>
+</head>
+<body class="bs-docs-home">
+
+<block name="menu">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background: #DF1E54;border-color: #D81919;">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">爱爱</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">爱爱</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="header-menu">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <a href="/article/love">谈情说爱</a>
+                    </li>
+                    <li>
+                        <a href="/skill">房事秘笈</a>
+                    </li>
+                    <li>
+                        <a href="/position">性爱姿势</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/about">FAQ</a>
+                    </li>
+                    <li class="login user-info dropdown">
+                        <if condition="isLogin()">
+                            <a href="#" title="{:getUserNickname()}"><img class="icon-login img-circle" title="{:getUserNickname()}" src="{:getUserAvatar(0,'/Public/images/iconfont-login.png')}"></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">{:getUserNickname()}</a></li>
+                                <li><a href="/auth/logout">退出</a></li>
+                                <!--<li class="divider"></li>-->
+                                <!--<li><a href="#">个人资料</a></li>-->
+                            </ul>
+                            <else />
+                            <a href="/auth/login/type/sina" title="登录"><img class="icon-login img-circle" title="" src="{:getStaticFile('/Public/images/iconfont-login.png')}"></a>
+                        </if>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+</block>
+<div id="main-container">
+    <block name="main">
+
+        <div class="container" style="">
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <div id="login-wrap" class="text-center">
+                        <h3>注册</h3>
+                        <form role="form" action="/services/security/username_password?accept_terms=true" method="post"
+                              id="signup-form" autocomplete="on" validate="">
+                            <!--<wb:login-button type="3,2" onlogin="login" onlogout="logout">登录按钮</wb:login-button>-->
+                            <a class="btn btn-lg btn-secondary btn-block" href="/auth/login/type/sina">
+                                <img src="__PUBLIC__/images/weibo_login.png" />
+                            </a>
+                            <!--<a class="btn btn-lg btn-secondary btn-block" track="sign up page google"-->
+                               <!--href="https://accounts.google.com/o/oauth2/auth?client_id=726336950247-p6172q2aojfuntnp8e0rocg45c19ss4b.apps.googleusercontent.com&amp;response_type=code&amp;scope=profile+email&amp;redirect_uri=https%3A//elasticbox.com/services/security/google_callback%3Faccept_terms%3Dtrue&amp;approval_prompt=auto"><i-->
+                                    <!--class="sso-google"></i>Sign Up with Google</a>-->
+                            <span class="divider"><strong>or</strong></span>
+
+                            <p id="signup-with-email-error" class="alert alert-danger" style="display:none">Email already
+                                exists.</p>
+
+                            <div class="form-group">
+                                <input name="name" type="name" track="sign up page name" placeholder="Your Name"
+                                       class="focus form-control input-lg" id="signup-name" required="">
+                            </div>
+                            <div class="form-group">
+                                <input name="email" type="email" track="sign up page email" placeholder="Email Address"
+                                       class="form-control input-lg" id="signup-email" required="">
+                            </div>
+                            <div class="form-group">
+                                <input name="password" type="password" track="sign up page password" placeholder="Password"
+                                       class="form-control input-lg" id="signup-password" required="">
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block sign-up-btn" track="sign up page email"
+                                    id="signup-with-email">注册
+                            </button>
+                        </form>
+                        <p class="padding-1x text-muted text-center">Already have an account? <a id="login-link"
+                                                                                                 href="..//login">Login</a>
+                        </p>
+                    </div>
+                </div>
+
+                <include file="Widget/comment" />
+                <div class="col-sm-4"></div>
+            </div>
+        </div>
+
+    </block>
+</div>
+<block name="footer">
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" style="text-align: center;">
+                    <div class="safe"><b class="icon-safe"></b>正在为您提供银行级别的隐私安全保障</div>
+                    <p class="copyright text-muted small">Copyright &copy; Aiai Inc. 2014. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- CNZZ统计代码开始 -->
+    <!--{$config.site_statistic}-->
+    <!-- CNZZ统计代码结束 -->
+</block>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+
+
+<script src="../assets/js/docs.min.js"></script>
+<script src="{:getStaticFile('/Public/home/js/app.js')}"></script>
+<script src="{:getStaticFile('/Public/js/common.js')}"></script>
+
+
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+
+<!-- Analytics
+================================================== -->
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>
