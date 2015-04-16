@@ -14,6 +14,7 @@
             'article/love/:type' => 'Article/love',
             'position/:id\d' => 'Position/detail',
             'question/:id\d' => 'Question/detail',
+            'question/ask' => 'Question/create',
             'user/:uid\d' => 'Account/home',
             'register' => 'Public/register',
             'login' => 'Public/login',

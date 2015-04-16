@@ -10,7 +10,7 @@ use Common\Description;
 
 class UserBehaviorManager {
 
-    public static function add($user, $group, $target, $action, $status){
+    public static function add($user, $group, $target, $action, $status = Description\UserBehaviorDescription::STATUS_NORMAL){
         self::addBehaviors();
         $UserBehaviorLog = M("UserBehaviorLog");
         $data = array(
@@ -63,6 +63,15 @@ class UserBehaviorManager {
         );
         return $UserBehaviorStat->where($conditions)->find();
     }
+    public static function getBehaviorStats($group_id, $action, $orders = "amount DESC", $offset = 0, $limit = 50){
+        $UserBehaviorStat = M("UserBehaviorStat");
+        $conditions = array(
+            "group_id" => $group_id,
+            "action" => $action,
+        );
+        return $UserBehaviorStat->where($conditions)->order($orders)->limit($offset,$limit)->select();
+    }
+
     private function addBehaviors(){
         \Think\Hook::add("user_favorite","\\Common\\Behavior\\FavoriteBehavior");
     }

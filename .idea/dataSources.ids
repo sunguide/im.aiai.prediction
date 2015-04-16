@@ -698,6 +698,23 @@
       <column name="name" sqlType="VARCHAR" length="200" precision="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="alias_id"/>
     </table>
+    <table name="aiai_answer" schema="" catalog="aiai_dev" type="TABLE">
+      <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="question_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" def="MA=="/>
+      <column name="user_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" def="MA=="/>
+      <column name="content" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1"/>
+      <column name="adopt" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="status" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="create_time" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="update_time" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="adopt" unique="false" columns="adopt"/>
+      <index name="create_time" unique="false" columns="create_time"/>
+      <index name="question_id" unique="false" columns="question_id"/>
+      <index name="status" unique="false" columns="status"/>
+      <index name="update_time" unique="false" columns="update_time"/>
+      <index name="user_id" unique="false" columns="user_id"/>
+    </table>
     <table name="aiai_article_error" schema="" catalog="aiai_dev" type="TABLE">
       <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="title" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12"/>
@@ -803,6 +820,22 @@
       <column name="status" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6"/>
       <primary-key name="PRIMARY" columns="category_id"/>
       <index name="category_id" unique="true" columns="category_id"/>
+    </table>
+    <table name="aiai_comment" schema="" catalog="aiai_dev" type="TABLE">
+      <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="group_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="target_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" def="MA=="/>
+      <column name="user_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" def="MA=="/>
+      <column name="content" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1"/>
+      <column name="status" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MQ=="/>
+      <column name="create_time" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="update_time" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="create_time" unique="false" columns="create_time"/>
+      <index name="group_id" unique="false" columns="group_id"/>
+      <index name="status" unique="false" columns="status"/>
+      <index name="target_id" unique="false" columns="target_id"/>
+      <index name="user_id" unique="false" columns="user_id"/>
     </table>
     <table name="aiai_comments" schema="" catalog="aiai_dev" type="TABLE">
       <column name="comment_id" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
@@ -1016,13 +1049,20 @@
       <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="aiai_question" schema="" catalog="aiai_dev" type="TABLE">
-      <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5"/>
-      <column name="title" sqlType="VARCHAR" length="200" precision="0" nullable="false" jdbcType="12"/>
+      <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="user_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" def="MA=="/>
+      <column name="title" sqlType="VARCHAR" length="200" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="cover" sqlType="VARCHAR" length="200" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
       <column name="content" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1"/>
-      <column name="status" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def="Mw=="/>
+      <column name="resolved" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="status" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" def="MQ=="/>
       <column name="create_time" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
       <column name="update_time" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
       <primary-key name="PRIMARY" columns="id"/>
+      <index name="create_time" unique="false" columns="create_time"/>
+      <index name="resolved" unique="false" columns="resolved"/>
+      <index name="status" unique="false" columns="status"/>
+      <index name="user_id" unique="false" columns="user_id"/>
     </table>
     <table name="aiai_search_track" schema="" catalog="aiai_dev" type="TABLE">
       <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>

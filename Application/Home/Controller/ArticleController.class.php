@@ -1,5 +1,7 @@
 <?php
 namespace Home\Controller;
+use Common\Description\UserBehaviorDescription;
+use Common\Manager\UserBehaviorManager;
 use Think\Controller;
 class ArticleController extends BaseController {
 
@@ -8,6 +10,8 @@ class ArticleController extends BaseController {
     }
     public function detail(){
         $id = I("id");
+        //记录用户行为
+        $id && UserBehaviorManager::add($this->getUserId(),UserBehaviorDescription::GROUP_ARTICLE,$id,UserBehaviorDescription::ACTION_VIEW);
         $Article = M("Articles");
         $article = $Article->find($id);
         $this->assign("article",$article);

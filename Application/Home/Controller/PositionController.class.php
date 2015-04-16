@@ -20,6 +20,8 @@ class PositionController extends BaseController {
 
     public function detail(){
         $id = intval(I("id"));
+        //记录用户行为
+        $id && UserBehaviorManager::add($this->getUserId(),UserBehaviorDescription::GROUP_POSITION,$id,UserBehaviorDescription::ACTION_VIEW);
         $PositionModel = M("Position");
         $item = $PositionModel->find($id);
         $this->assign("item", $item);

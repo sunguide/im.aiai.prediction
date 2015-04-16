@@ -15,10 +15,12 @@ class UserBehaviorDescription extends Description {
     const GROUP_TOPIC       = 2;
     const GROUP_POSITION    = 3;
     const GROUP_USER        = 4;
+    const GROUP_QUESTION    = 5;
 
     const ACTION_VIEW       = 1;
     const ACTION_FAVORITE   = 2;
     const ACTION_FOLLOW     = 3;
+    const ACTION_FOLLOWED   = 4;
 
     const STATUS_NORMAL = 1;
     const STATUS_CANCEL = 2;
@@ -35,7 +37,8 @@ class UserBehaviorDescription extends Description {
         self::UNKNOWN       => "未知",
         self::ACTION_VIEW   => "查看",
         self::ACTION_FAVORITE => "喜欢",
-        self::ACTION_FOLLOW  => "关注"
+        self::ACTION_FOLLOW  => "关注",
+        self::ACTION_FOLLOWED  => "被关注"
 
     );
 

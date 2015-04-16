@@ -4,11 +4,77 @@
 <block name="left"></block>
 <block name="main">
     <div class="container">
-        <div class="row" style="margin-top: 30px;">
-            <div class="col-xs-12 col-md-9 main">
-                <h3 class="">{$item['title']}</h3>
-                <div class="article-content" style="min-height: 400px;">
-                    {$item['content']}
+        <div class="row">
+            <div class="col-xs-12 col-md-9 main" style="margin-top:30px;background: #fff;min-height: 400px;">
+                <div class="user-info display-inline">
+                    <a href="/user/{$item['user_id']}"><img class="img-circle avatar-50" src="{:getUserAvatar($item['user_id'])}"/></a>
+                </div>
+                <h3 class="display-inline">{$item['user_name']}问：{$item['title']}</h3>
+                <div class="question-content first-letter-upper" style="margin-bottom: 20px;">
+                    <p>{$item['content']}</p>
+                </div>
+                <hr>
+                <div class="answer-lists">
+                    <h4>{:count($answers)} 个回答</h4>
+                    <ul class="list-group">
+                        <volist name="answers" id="answer">
+                            <li class="active">
+                                <div class="answer-content">
+                                    <article class="widget-answers__item accepted" id="a-1020000002680559">
+
+
+                                        <div class="post-offset">
+                                            <a href="/user/{$answer['user_id']}">
+                                                <img class="avatar-50 img-circle" src="{:getUserAvatar($answer['user_id'])}" alt="">
+                                            </a>
+                                            <strong><a href="/user/{$answer['user_id']}" class="mr5">{$answer['user_name']}</a></strong>
+
+                                            <span class="ml10 text-muted">{$answer['create_time']|getSocialTime} 回答</span>
+
+                                            <div class="answer fmt mt10">
+
+                                                <p>{$answer['content']}</p>
+
+                                            </div>
+                                            <div class="post-opt">
+                                                <ul class="list-inline mb0">
+
+                                                    <li><a href="javascript:void(0);" class="comments" data-id="1020000002680559" data-target="#comment-1020000002680559">1 评论</a></li>
+                                                    <li class="dropdown">
+                                                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">更多<b class="caret"></b></a>
+                                                        <ul class="dropdown-menu dropdown-menu-left">
+                                                            <li><a href="#911" data-id="1020000002680559" data-toggle="modal" data-target="#911" data-type="answer" data-typetext="答案">举报</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <ul class="widget-comments hidden" id="comment-1020000002680559" data-id="1020000002680559">
+                                                <li class="widget-comments__form row">
+                                                    <form class="col-md-10 col-xs-12">
+                                                        <div class="form-group mb0">
+                                                            <input name="id" type="hidden" value="1020000002680559">
+                                                            <textarea name="text" class="form-control" id="commentText-1020000002680559" data-id="1020000002680559" placeholder="添加评论"></textarea>
+                                                        </div>
+                                                    </form>
+                                                    <div class="col-md-2 col-xs-12">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-block postComment m-mt15" data-id="1020000002680559">提交评论</button>
+                                                        <div class="mt10"><a href="javascript:void(0);" class="toggle-comment-helper">语法提示</a></div>
+                                                    </div>
+                                                    <div class="col-md-10 col-xs-12 fmt comment-helper" data-rank="2" style="display:none;">
+                                                        <div class="alert alert-warning mb10 mt10">评论支持部分 Markdown 语法：<code>**bold**</code> <code>_italic_</code> <code>[link](http://example.com)</code> <code>&gt; 引用</code> <code>`code`</code> <code>- 列表</code>。<br>同时，被你 @ 的用户也会收到通知</div>
+                                                    </div>
+
+                                                </li><!-- /.widget-comments__form -->
+                                            </ul><!-- /.widget-comments -->
+
+
+                                        </div>
+                                    </article>
+                                </div>
+                            </li>
+                        </volist>
+                    </ul>
                 </div>
             </div>
             <div class="col-xs-4 col-md-3 aside">

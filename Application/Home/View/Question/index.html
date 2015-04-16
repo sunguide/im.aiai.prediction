@@ -5,16 +5,18 @@
 <block name="main">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-md-8 main">
+            <div class="col-xs-12 col-md-8 main" style="margin-top: 20px;">
 
-                <h3 class="bs-docs-featurette-title">谈情说爱</h3>
+                <p class="main-title" style="margin-top: 10px;">
+                    今天，你又遇到了什么问题了呢？
+                    <a id="goAsk" href="/question/ask" class="btn btn-primary">我要提问</a>
+                </p>
                 <ul class="nav nav-tabs nav-tabs-zen mb10">
-                    <li class="active"><a href="{:U('question/newest')}">最新的</a></li>
-                    <li><a href="{:U('question/hottest')}">热门的</a></li>
-                    <li><a href="{:U('question/unanswered')}">热门的</a></li>
+                    <li class="{$nav_tab=='newest'?'active':''} {$nav_tab|default='active'}"><a href="{:U('question/newest')}">最新的</a></li>
+                    <li class="{$nav_tab=='hottest'?'active':''}"><a href="{:U('question/hottest')}">热门的</a></li>
+                    <li class="{$nav_tab=='unanswered'?'active':''}"><a href="{:U('question/unanswered')}">热门的</a></li>
                 </ul>
-                <hr class="half-rule">
-                <div class="row">
+                <div class="row" style="margin-top: 20px;">
                     <volist name="lists" id="list">
                         <div style="height: 70px;margin:5px 15px;">
                             <div class="user-avatar" style="float:left;">
@@ -31,32 +33,7 @@
                         </div>
                     </volist>
                 </div>
-
-                <div class="row">
-                    <div class="col-sm-4">
-                        <a href="http://job.bootcss.com/" target="_blank" title="Bootstrap Jobs" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Bootstrap Jobs'])" target="_blank">
-                            <img src="http://static.bootcss.com/expo/img/9/10/aa0f5e47743eb3757b7cb06c29444.jpg" alt="Bootstrap Jobs" class="img-responsive">
-                        </a>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <a href="http://www.ghostchina.com/" target="_blank" title="Ghost中国" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Ghost中国'])" target="_blank">
-                            <img src="http://static.bootcss.com/expo/img/7/b5/f9c2f01fad1f23574156e0577a06c.jpg" alt="Ghost中国" class="img-responsive">
-                        </a>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <a href="http://expo.bootcss.com/" target="_blank" title="Timely" onclick="_hmt.push(['_trackEvent', 'doc-home-youzhan-img', 'click', 'Timely'])" target="_blank">
-                            <img src="http://static.bootcss.com/expo/img/8/6e/4a5e1cc71a408729fb2cc3f476afb.jpg" alt="Timely" class="img-responsive">
-                        </a>
-                    </div>
-
-                </div>
-
                 <hr class="half-rule">
-
-                <p class="lead">我们在“优站精选”里展示了许多精美的 Bootstrap 网站。</p>
-                <a href="http://expo.bootcss.com" class="btn btn-outline btn-lg">逛一逛“优站精选”</a>
             </div>
             <div class="col-xs-12 col-md-1"></div>
             <div class="col-xs-4 col-md-3 aside-right">

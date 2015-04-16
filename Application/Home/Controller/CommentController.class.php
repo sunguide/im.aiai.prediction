@@ -4,7 +4,7 @@ use Common\Description\UserBehaviorDescription;
 use Common\Manager\QuestionManager;
 use Common\Manager\UserBehaviorManager;
 use Think\Controller;
-class QuestionController extends BaseController {
+class CommentController extends BaseController {
 
     public function index(){
         $limit = 21;
@@ -51,22 +51,16 @@ class QuestionController extends BaseController {
     public function create(){
         $title = I("title");
         $content = I("content");
-        $result = false;
-        if($title && $content){
-            $data = array(
-                "user_id" => intval($this->getUserId()),
-                "title" => $title,
-                "content" => $content,
-                "create_time" => time(),
-                "update_time" => time()
-            );
-            $Question = M("Question");
-            $Question->add($data);
-        }else{
-            $result = $this->setError("请同时输入标题和内容");
-        }
+        $data = array(
+            "user_id" => intval($this->getUserId()),
+            "title" => $title,
+            "content" => $content,
+            "create_time" => time(),
+            "update_time" => time()
+        );
+        $Question = M("Question");$Question->add($data);
 
-        $this->response($result);
+        $this->response($Question->getLastSql());
     }
 
     public function detail(){
@@ -75,8 +69,6 @@ class QuestionController extends BaseController {
         $id && UserBehaviorManager::add($this->getUserId(),UserBehaviorDescription::GROUP_QUESTION,$id,UserBehaviorDescription::ACTION_VIEW);
         $QuestionModel = M("Question");
         $item = $QuestionModel->find($id);
-        $answers = M("Answer")->where("question_id = $id")->select();
-        $this->assign("answers",$answers);
         $this->assign("item", $item);
         $this->display();
     }
