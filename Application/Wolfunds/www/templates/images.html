@@ -1,0 +1,64 @@
+<ion-view title="">
+    <ion-header-bar>
+        <h1 class="title">首页</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeLogin()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" style="height:250px;">
+
+
+            <ion-slide ng-repeat="nav in navs">
+                <div class="box blue">
+                    <img ng-src="{{nav.url}}?imageView2/1/w/400/h/250/q/100" style="width: 100%;height: 100%;">
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+        <div class="list">
+            <div class="item"
+                 ng-repeat="image in images">
+                <!--<div class="row">-->
+                    <!--<div class="col">-->
+                        <img ng-src="{{image.url}}?imageView2/2/w/400/q/100" style="width: 100%;height:100%;min-height: 100px;"/>
+                    <!--</div>-->
+                    <!--<div class="col col-100" style="background-image: url({{image.url}});-->
+                    <!---moz-background-size:100% 100%;-->
+                    <!--background-size:100% 100%;">-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+            <!--<div class="item my-item"-->
+                 <!--collection-repeat="image in images"-->
+                 <!--collection-item-width="'100%'"-->
+                 <!--collection-item-height="'30%'">-->
+                <!--<div class="row">-->
+                    <!--<div class="col col-33" style="background-image: url({{image.url}});-->
+                    <!---moz-background-size:100% 100%;-->
+                    <!--background-size:100% 100%;">-->
+                    <!--</div>-->
+                    <!--<div class="col">-->
+                        <!--<img ng-src="http://www.bootcss.com/p/unslider/img/wood.jpg" style="width: 100%;"><br>-->
+                        <!--<img ng-src="http://www.bootcss.com/p/unslider/img/wood.jpg" style="width: 100%">-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <style>
+
+        </style>
+        <div id="footer" style="margin-top: 20px;">
+            <!--<div class="down">-->
+                <!--<a href="/user/preRegister.do" class="fl btn btn-white">注册领红包</a>-->
+<!---->
+                <!--<a href="/global/download.do" class="fr btn btn-white">下载客户端</a>-->
+            <!--</div>-->
+            <div class="footer-menu"><a href="/">首页</a><a href="/global/help.do">帮助中心</a><a href="/views/appCommon/event/index.jsp">关于我们</a><a href="http://www.yooli.com/index.action">电脑版</a></div>
+            <div class="safe"><b class="icon-safe"></b>正在为您的隐私提供安全保障</div>
+            <div class="copyright">© 2014 爱爱社区 Aiai.im</div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,36 @@
+<ion-view title="">
+    <ion-header-bar>
+        <h1 class="title">首页</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeLogin()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" style="height:250px;">
+
+
+            <ion-slide ng-repeat="nav in navs">
+                <div class="box blue">
+                    <img ng-src="{{nav.url}}?imageview2/1/w/300/h/200/q/80">
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+
+        <style>
+
+        </style>
+        <div id="footer" style="margin-top: 20px;">
+            <!--<div class="down">-->
+                <!--<a href="/user/preRegister.do" class="fl btn btn-white">注册领红包</a>-->
+<!---->
+                <!--<a href="/global/download.do" class="fr btn btn-white">下载客户端</a>-->
+            <!--</div>-->
+            <div class="footer-menu"><a href="/">首页</a><a href="/global/help.do">帮助中心</a><a href="/views/appCommon/event/index.jsp">关于我们</a><a href="http://www.yooli.com/index.action">电脑版</a></div>
+            <div class="safe"><b class="icon-safe"></b>正在为您的隐私提供安全保障</div>
+            <div class="copyright">© 2014 爱爱社区 Aiai.im</div>
+        </div>
+    </ion-content>
+</ion-view>
